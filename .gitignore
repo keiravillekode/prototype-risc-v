@@ -1,0 +1,9 @@
+*.swp
+.DS_Store
+bin/configlet
+bin/configlet.exe
+build/
+**/tests
+**/*.o
+*.pyc
+__pycache__/
