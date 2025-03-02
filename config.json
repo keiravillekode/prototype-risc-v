@@ -40,6 +40,14 @@
         "difficulty": 1
       },
       {
+        "slug": "two-fer",
+        "name": "Two-Fer",
+        "uuid": "77af0566-9196-48f3-975c-92a1412fc97e",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 2
+      },
+      {
         "slug": "atbash-cipher",
         "name": "Atbash Cipher",
         "uuid": "64e44b04-2d5b-4ab9-b09c-16a7a6c73e49",
