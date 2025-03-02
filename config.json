@@ -48,6 +48,14 @@
         "difficulty": 2
       },
       {
+        "slug": "raindrops",
+        "name": "Raindrops",
+        "uuid": "a93e10e3-bba0-45d0-85bb-d10bfdce765e",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 3
+      },
+      {
         "slug": "atbash-cipher",
         "name": "Atbash Cipher",
         "uuid": "64e44b04-2d5b-4ab9-b09c-16a7a6c73e49",
