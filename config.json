@@ -120,6 +120,14 @@
         "difficulty": 3
       },
       {
+        "slug": "rna-transcription",
+        "name": "RNA Transcription",
+        "uuid": "ab7b8c2a-4975-423f-a9ee-60bed1b0eb28",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 3
+      },
+      {
         "slug": "square-root",
         "name": "Square Root",
         "uuid": "9fe217ff-ceaf-45ea-a394-76f21feca522",
