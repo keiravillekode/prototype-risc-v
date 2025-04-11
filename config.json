@@ -128,6 +128,14 @@
         "difficulty": 3
       },
       {
+        "slug": "scrabble-score",
+        "name": "Scrabble Score",
+        "uuid": "682958a0-0b00-47fc-b402-c9e013bed0bd",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 3
+      },
+      {
         "slug": "square-root",
         "name": "Square Root",
         "uuid": "9fe217ff-ceaf-45ea-a394-76f21feca522",
