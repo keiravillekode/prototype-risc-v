@@ -80,6 +80,14 @@
         "difficulty": 3
       },
       {
+        "slug": "eliuds-eggs",
+        "name": "Eliud's Eggs",
+        "uuid": "d0bebc24-bec1-402d-8c17-503ac2a60012",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 3
+      },
+      {
         "slug": "raindrops",
         "name": "Raindrops",
         "uuid": "a93e10e3-bba0-45d0-85bb-d10bfdce765e",
