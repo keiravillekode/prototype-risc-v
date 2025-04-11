@@ -64,6 +64,14 @@
         "difficulty": 2
       },
       {
+        "slug": "collatz-conjecture",
+        "name": "Collatz Conjecture",
+        "uuid": "4157648a-446b-469e-a007-1fd210b863c0",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 3
+      },
+      {
         "slug": "raindrops",
         "name": "Raindrops",
         "uuid": "a93e10e3-bba0-45d0-85bb-d10bfdce765e",
