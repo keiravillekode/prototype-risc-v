@@ -45,7 +45,7 @@ require_files_template "example"
 [[ -f ./bin/fetch-configlet ]] || die "Run this script from the repo's root directory."
 
 author=''
-difficulty='3'
+difficulty='4'
 while getopts :ha:d: opt; do
     case $opt in
         h) help_and_exit ;;

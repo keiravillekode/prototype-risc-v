@@ -176,6 +176,14 @@
         "difficulty": 3
       },
       {
+        "slug": "sum-of-multiples",
+        "name": "Sum of Multiples",
+        "uuid": "4affe310-37c3-4fb6-b22c-686b183b5189",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 3
+      },
+      {
         "slug": "triangle",
         "name": "Triangle",
         "uuid": "c2500437-a7b0-46f1-9038-d530aa69100d",
@@ -184,20 +192,20 @@
         "difficulty": 3
       },
       {
+        "slug": "isbn-verifier",
+        "name": "ISBN Verifier",
+        "uuid": "6e41c240-67d6-4343-a823-8dd15ca73742",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 4
+      },
+      {
         "slug": "atbash-cipher",
         "name": "Atbash Cipher",
         "uuid": "64e44b04-2d5b-4ab9-b09c-16a7a6c73e49",
         "practices": [],
         "prerequisites": [],
         "difficulty": 5
-      },
-      {
-        "slug": "sum-of-multiples",
-        "name": "Sum of Multiples",
-        "uuid": "4affe310-37c3-4fb6-b22c-686b183b5189",
-        "practices": [],
-        "prerequisites": [],
-        "difficulty": 3
       }
     ],
     "foregone": [
