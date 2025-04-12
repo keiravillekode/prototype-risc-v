@@ -128,6 +128,14 @@
         "difficulty": 3
       },
       {
+        "slug": "nucleotide-count",
+        "name": "Nucleotide Count",
+        "uuid": "90498e76-7385-4ad9-9196-2671925860e7",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 3
+      },
+      {
         "slug": "pangram",
         "name": "Pangram",
         "uuid": "5115dde7-a180-4e35-89dd-0ebbe1102f10",
