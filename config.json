@@ -120,6 +120,14 @@
         "difficulty": 3
       },
       {
+        "slug": "micro-blog",
+        "name": "Micro Blog",
+        "uuid": "606e5a36-b68d-44cd-8c52-4f18b4277b5d",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 3
+      },
+      {
         "slug": "pangram",
         "name": "Pangram",
         "uuid": "5115dde7-a180-4e35-89dd-0ebbe1102f10",
