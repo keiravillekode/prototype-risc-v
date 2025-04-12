@@ -72,6 +72,14 @@
         "difficulty": 3
       },
       {
+        "slug": "armstrong-numbers",
+        "name": "Armstrong Numbers",
+        "uuid": "ccd718f8-045c-4a9a-8dec-65337151a883",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 3
+      },
+      {
         "slug": "collatz-conjecture",
         "name": "Collatz Conjecture",
         "uuid": "4157648a-446b-469e-a007-1fd210b863c0",
