@@ -200,6 +200,14 @@
         "difficulty": 4
       },
       {
+        "slug": "prime-factors",
+        "name": "Prime Factors",
+        "uuid": "2fd4a4a0-d4d1-47e8-896e-54800d57f33b",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 4
+      },
+      {
         "slug": "rotational-cipher",
         "name": "Rotational Cipher",
         "uuid": "a9de0684-d232-4654-be9f-36efc0d8562f",
