@@ -192,6 +192,14 @@
         "difficulty": 3
       },
       {
+        "slug": "bob",
+        "name": "Bob",
+        "uuid": "b7444b07-a59a-4a77-86c9-0f3e350970f8",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 4
+      },
+      {
         "slug": "isbn-verifier",
         "name": "ISBN Verifier",
         "uuid": "6e41c240-67d6-4343-a823-8dd15ca73742",
