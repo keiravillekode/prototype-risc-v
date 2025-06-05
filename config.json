@@ -224,9 +224,25 @@
         "difficulty": 4
       },
       {
+        "slug": "secret-handshake",
+        "name": "Secret Handshake",
+        "uuid": "2e065598-cd02-4f07-ac91-a3b8d29d7865",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 4
+      },
+      {
         "slug": "atbash-cipher",
         "name": "Atbash Cipher",
         "uuid": "64e44b04-2d5b-4ab9-b09c-16a7a6c73e49",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 5
+      },
+      {
+        "slug": "binary-search",
+        "name": "Binary Search",
+        "uuid": "3f610112-9f61-4a9d-af56-4ecbd7548243",
         "practices": [],
         "prerequisites": [],
         "difficulty": 5
@@ -240,14 +256,6 @@
         "difficulty": 5
       },
       {
-        "slug": "secret-handshake",
-        "name": "Secret Handshake",
-        "uuid": "2e065598-cd02-4f07-ac91-a3b8d29d7865",
-        "practices": [],
-        "prerequisites": [],
-        "difficulty": 4
-      },
-      {
         "slug": "pig-latin",
         "name": "Pig Latin",
         "uuid": "690ac68e-21cf-4570-979a-4b8fee5594cd",
@@ -256,12 +264,12 @@
         "difficulty": 5
       },
       {
-        "slug": "binary-search",
-        "name": "Binary Search",
-        "uuid": "3f610112-9f61-4a9d-af56-4ecbd7548243",
+        "slug": "pascals-triangle",
+        "name": "Pascal's Triangle",
+        "uuid": "86d39803-186e-4bbc-8a7c-f341939e1fbf",
         "practices": [],
         "prerequisites": [],
-        "difficulty": 5
+        "difficulty": 6
       }
     ],
     "foregone": [
