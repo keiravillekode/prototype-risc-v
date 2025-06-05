@@ -29,6 +29,7 @@ jump:   .string "jump, "
 .text
 .globl commands
 
+/* extern void commands(char *buffer, int number); */
 commands:
         move    t0, a0
         andi    t1, a1, REVERSE
@@ -53,4 +54,4 @@ commands:
 
 .return:
         sb      zero, 0(a0)
-    ret
+        ret
