@@ -264,6 +264,14 @@
         "difficulty": 5
       },
       {
+        "slug": "house",
+        "name": "House",
+        "uuid": "ca15d1f7-b0f8-4de7-b848-bab1d0bee986",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 5
+      },
+      {
         "slug": "largest-series-product",
         "name": "Largest Series Product",
         "uuid": "d37f2e77-117b-4994-b2ed-d628c6360dd8",
