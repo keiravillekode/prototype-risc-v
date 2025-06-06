@@ -208,6 +208,14 @@
         "difficulty": 4
       },
       {
+        "slug": "phone-number",
+        "name": "Phone Number",
+        "uuid": "796af4d9-066d-4127-b21c-548693ba9f51",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 4
+      },
+      {
         "slug": "prime-factors",
         "name": "Prime Factors",
         "uuid": "2fd4a4a0-d4d1-47e8-896e-54800d57f33b",
