@@ -336,6 +336,14 @@
         "difficulty": 6
       },
       {
+        "slug": "pythagorean-triplet",
+        "name": "Pythagorean Triplet",
+        "uuid": "7b520e6b-69f9-4f4b-8b0a-a1080bb7c5c9",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 8
+      },
+      {
         "slug": "zebra-puzzle",
         "name": "Zebra Puzzle",
         "uuid": "c99c380c-cbaf-478f-850a-f3cb90aa4263",
