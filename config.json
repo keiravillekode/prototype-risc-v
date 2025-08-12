@@ -344,12 +344,21 @@
         "difficulty": 6
       },
       {
+        "slug": "flower-field",
+        "name": "Flower Field",
+        "uuid": "608d4e16-b842-4961-95bd-dc6c3a1d057c",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 7
+      },
+      {
         "slug": "minesweeper",
         "name": "Minesweeper",
         "uuid": "e7501a10-24df-4250-b44e-4795e4ef47c6",
         "practices": [],
         "prerequisites": [],
-        "difficulty": 7
+        "difficulty": 7,
+        "status": "deprecated"
       },
       {
         "slug": "pythagorean-triplet",
