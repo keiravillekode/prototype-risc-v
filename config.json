@@ -304,6 +304,14 @@
         "difficulty": 5
       },
       {
+        "slug": "roman-numerals",
+        "name": "Roman Numerals",
+        "uuid": "739aab82-cf2c-418c-a0c1-a1209f06857b",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 5
+      },
+      {
         "slug": "all-your-base",
         "name": "All Your Base",
         "uuid": "56e33ab6-576b-4693-9ef7-d31e1c253c14",
