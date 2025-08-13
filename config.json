@@ -312,6 +312,14 @@
         "difficulty": 5
       },
       {
+        "slug": "run-length-encoding",
+        "name": "Run-Length Encoding",
+        "uuid": "8de4a64c-6218-42e3-a41c-d388bf1ec5c6",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 5
+      },
+      {
         "slug": "all-your-base",
         "name": "All Your Base",
         "uuid": "56e33ab6-576b-4693-9ef7-d31e1c253c14",
