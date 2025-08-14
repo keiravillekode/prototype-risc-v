@@ -368,6 +368,14 @@
         "difficulty": 6
       },
       {
+        "slug": "variable-length-quantity",
+        "name": "Variable Length Quantity",
+        "uuid": "061ed8a2-0bac-47bb-8ee7-af0c0c79aa5d",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 6
+      },
+      {
         "slug": "flower-field",
         "name": "Flower Field",
         "uuid": "608d4e16-b842-4961-95bd-dc6c3a1d057c",
