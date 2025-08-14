@@ -384,6 +384,14 @@
         "difficulty": 7
       },
       {
+        "slug": "intergalactic-transmission",
+        "name": "Intergalactic Transmission",
+        "uuid": "f4820526-8991-4010-ac1c-47ac52197c22",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 7
+      },
+      {
         "slug": "pythagorean-triplet",
         "name": "Pythagorean Triplet",
         "uuid": "7b520e6b-69f9-4f4b-8b0a-a1080bb7c5c9",
