@@ -256,6 +256,14 @@
         "difficulty": 4
       },
       {
+        "slug": "affine-cipher",
+        "name": "Affine Cipher",
+        "uuid": "4f8a706f-43ed-451f-a94f-531d172e235d",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 5
+      },
+      {
         "slug": "atbash-cipher",
         "name": "Atbash Cipher",
         "uuid": "64e44b04-2d5b-4ab9-b09c-16a7a6c73e49",
