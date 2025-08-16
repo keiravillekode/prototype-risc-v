@@ -376,6 +376,14 @@
         "difficulty": 6
       },
       {
+        "slug": "yacht",
+        "name": "Yacht",
+        "uuid": "9596c78d-4e4f-4a9e-9c6b-8e30b2ae1769",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 6
+      },
+      {
         "slug": "flower-field",
         "name": "Flower Field",
         "uuid": "608d4e16-b842-4961-95bd-dc6c3a1d057c",
