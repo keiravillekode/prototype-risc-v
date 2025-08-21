@@ -152,6 +152,14 @@
         "difficulty": 3
       },
       {
+        "slug": "resistor-color",
+        "name": "Resistor Color",
+        "uuid": "5dccb4a9-22ab-4236-add0-0705ae532871",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 3
+      },
+      {
         "slug": "rna-transcription",
         "name": "RNA Transcription",
         "uuid": "ab7b8c2a-4975-423f-a9ee-60bed1b0eb28",
