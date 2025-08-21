@@ -3,13 +3,13 @@ FUNC_PROTO = """\
 
 #include <stddef.h>
 
-extern int value(const char *first, const char *second, const char *third);
+extern int value(const char *first, const char *second, const char *third, const char *fourth);
 """
 
 
 def gen_func_body(prop, inp, expected):
     colors = inp["colors"]
-    if len(colors) < 3:
+    while len(colors) < 4:
         colors = colors + [None]
 
     def serialize(color):

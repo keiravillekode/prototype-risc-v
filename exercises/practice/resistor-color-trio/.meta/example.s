@@ -1,4 +1,4 @@
-.data
+.section .rodata
 
 ohms:   .string " ohms"
 kiloohms:

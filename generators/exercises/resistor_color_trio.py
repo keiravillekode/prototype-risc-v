@@ -41,7 +41,7 @@ def extra_cases():
 
 def gen_func_body(prop, inp, expected):
     colors = inp["colors"]
-    if len(colors) < 4:
+    while len(colors) < 4:
         colors = colors + [None]
 
     def serialize(color):

@@ -49,7 +49,7 @@ color_code:
 .return:
         jalr    zero, 0(t6)             /* return */
 
-/* extern int value(const char *first, const char *second, const char *third); */
+/* extern int value(const char *first, const char *second, const char *third, const char *fourth); */
 value:
         jal     t6, color_code          /* subroutine call */
         li      t5, 10
