@@ -20,7 +20,7 @@ gifts_table:
 .globl recite
 
 
-/* char * copy(char *dest, void *, void *, const char *source); */
+/* char *copy(char *dest, void *, void *, const char *source); */
 copy:
         lb      t0, 0(a3)
         addi    a3, a3, 1
@@ -32,7 +32,7 @@ copy:
         jalr    zero, 0(t6)             /* return */
 
 
-/* char * copy_n(char *dest, void *, void *, const char *source, size_t length); */
+/* char *copy_n(char *dest, void *, void *, const char *source, size_t length); */
 copy_n:
         beqz    a4, .copy_n_return
 

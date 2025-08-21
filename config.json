@@ -352,6 +352,14 @@
         "difficulty": 5
       },
       {
+        "slug": "proverb",
+        "name": "Proverb",
+        "uuid": "8c231aba-6c46-44b0-8b93-1c7c98108a20",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 5
+      },
+      {
         "slug": "roman-numerals",
         "name": "Roman Numerals",
         "uuid": "739aab82-cf2c-418c-a0c1-a1209f06857b",
