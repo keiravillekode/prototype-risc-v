@@ -472,6 +472,14 @@
         "difficulty": 7
       },
       {
+        "slug": "book-store",
+        "name": "Book Store",
+        "uuid": "d52b39ed-4668-4629-952a-19332a6cb50c",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 8
+      },
+      {
         "slug": "pythagorean-triplet",
         "name": "Pythagorean Triplet",
         "uuid": "7b520e6b-69f9-4f4b-8b0a-a1080bb7c5c9",
