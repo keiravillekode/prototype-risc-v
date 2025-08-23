@@ -29,6 +29,9 @@ def gen_func_body(prop, inp, expected):
     expected = [0] * 6
     for book in basket:
         expected[book] += 1
+    expected = expected[1:]
+    expected.sort(reverse=True)
+    expected = [0] + expected
 
     previous = expected[5]
     for i in range(4, 0, -1):

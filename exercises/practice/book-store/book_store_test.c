@@ -28,7 +28,7 @@ void test_two_of_the_same_book(void) {
     uint16_t tally[6] = { 0, 0, 0, 0, 0, 0 };
     const uint16_t basket[] = {2, 2};
     total(ARRAY_SIZE(basket), basket, tally);
-    const uint16_t expected[6] = {0, -2, 2, 0, 0, 0};
+    const uint16_t expected[6] = {0, 2, 0, 0, 0, 0};
     TEST_ASSERT_EQUAL_INT16_ARRAY(expected, tally, 6);
 }
 
@@ -90,7 +90,7 @@ void test_two_groups_of_four_is_cheaper_than_groups_of_five_and_three(void) {
     uint16_t tally[6] = { 0, 0, 0, 0, 0, 0 };
     const uint16_t basket[] = {1, 1, 2, 3, 4, 4, 5, 5};
     total(ARRAY_SIZE(basket), basket, tally);
-    const uint16_t expected[6] = {0, 1, 0, -1, 0, 2};
+    const uint16_t expected[6] = {0, 0, 0, 1, 0, 1};
     TEST_ASSERT_EQUAL_INT16_ARRAY(expected, tally, 6);
 }
 
@@ -171,7 +171,7 @@ void test_one_group_of_one_and_two_plus_three_groups_of_four_is_cheaper_than_one
     uint16_t tally[6] = { 0, 0, 0, 0, 0, 0 };
     const uint16_t basket[] = {1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5};
     total(ARRAY_SIZE(basket), basket, tally);
-    const uint16_t expected[6] = {0, -1, -1, -1, -1, 5};
+    const uint16_t expected[6] = {0, 1, 1, 1, 1, 1};
     TEST_ASSERT_EQUAL_INT16_ARRAY(expected, tally, 6);
 }
 

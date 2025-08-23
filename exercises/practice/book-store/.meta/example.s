@@ -23,6 +23,38 @@ count:
 
 
 
+
+/* void sort(uint16_t *tally) */
+sort:
+        addi   t0, a0, 4
+        addi   t1, a0, 12               /* offsets 4..10 for books 2..5 */
+
+.outer:
+        lhu    t2, 0(t0)
+        move   t3, t0                 /* offset for inner loop of insertion sort */
+
+.inner:
+        addi    t3, t3, -2
+        beq     t3, a0, .exit
+
+        lhu    t4, 0(t3)
+        bge    t4, t2, .exit
+
+        sh      t4, 2(t3)
+        j       .inner
+
+.exit:
+        sh    t2, 2(t3)
+
+        addi    t0, t0, 2
+        bne     t0, t1, .outer
+
+        jalr    zero, 0(t6)             /* return */
+
+
+
+
+
 /* void difference(uint16_t *tally); */
 difference:
         lh    t0, 10(a0)
@@ -49,5 +81,6 @@ difference:
 total:
         jal     t6, count
         move    a0, a2
+        jal     t6, sort
         jal     t6, difference
         ret
