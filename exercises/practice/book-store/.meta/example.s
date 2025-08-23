@@ -77,10 +77,35 @@ difference:
 
 
 
+/* void adjust(uint16_t *tally); */
+adjust:
+        lhu     t0, 6(a0)
+        lhu     t1, 8(a0)
+        lhu     t2, 10(a0)
+
+        move    t3, t0
+        bgeu    t2, t0, .adjust
+
+        move    t3, t2   
+
+.adjust:
+        sub     t0, t0, t3
+        sh     t0, 6(a0)
+        add     t1, t1, t3
+        add     t1, t1, t3
+        sh     t1, 8(a0)
+        sub     t2, t2, t3
+        sh     t2, 10(a0)
+
+        jalr    zero, 0(t6)             /* return */
+
+
+
 /* extern void total(size_t basket_count, const uint16_t *basket, uint16_t *tally); */
 total:
         jal     t6, count
         move    a0, a2
         jal     t6, sort
         jal     t6, difference
+        jal     t6, adjust
         ret

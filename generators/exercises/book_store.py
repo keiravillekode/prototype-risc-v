@@ -39,6 +39,11 @@ def gen_func_body(prop, inp, expected):
         expected[i] -= previous
         previous = current
 
+    adjustment = min(expected[3], expected[5])
+    expected[3] -= adjustment
+    expected[5] -= adjustment
+    expected[4] += 2 * adjustment
+
     str_list.append(f"const uint16_t expected[6] = {array_literal(expected)};\n")
     str_list.append(f'TEST_ASSERT_EQUAL_INT16_ARRAY(expected, tally, 6);\n')
 

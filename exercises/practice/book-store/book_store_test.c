@@ -81,7 +81,7 @@ void test_two_groups_of_four_is_cheaper_than_group_of_five_plus_group_of_three(v
     uint16_t tally[6] = { 0, 0, 0, 0, 0, 0 };
     const uint16_t basket[] = {1, 1, 2, 2, 3, 3, 4, 5};
     total(ARRAY_SIZE(basket), basket, tally);
-    const uint16_t expected[6] = {0, 0, 0, 1, 0, 1};
+    const uint16_t expected[6] = {0, 0, 0, 0, 2, 0};
     TEST_ASSERT_EQUAL_INT16_ARRAY(expected, tally, 6);
 }
 
@@ -90,7 +90,7 @@ void test_two_groups_of_four_is_cheaper_than_groups_of_five_and_three(void) {
     uint16_t tally[6] = { 0, 0, 0, 0, 0, 0 };
     const uint16_t basket[] = {1, 1, 2, 3, 4, 4, 5, 5};
     total(ARRAY_SIZE(basket), basket, tally);
-    const uint16_t expected[6] = {0, 0, 0, 1, 0, 1};
+    const uint16_t expected[6] = {0, 0, 0, 0, 2, 0};
     TEST_ASSERT_EQUAL_INT16_ARRAY(expected, tally, 6);
 }
 
@@ -144,7 +144,7 @@ void test_four_groups_of_four_are_cheaper_than_two_groups_each_of_five_and_three
     uint16_t tally[6] = { 0, 0, 0, 0, 0, 0 };
     const uint16_t basket[] = {1, 1, 2, 2, 3, 3, 4, 5, 1, 1, 2, 2, 3, 3, 4, 5};
     total(ARRAY_SIZE(basket), basket, tally);
-    const uint16_t expected[6] = {0, 0, 0, 2, 0, 2};
+    const uint16_t expected[6] = {0, 0, 0, 0, 4, 0};
     TEST_ASSERT_EQUAL_INT16_ARRAY(expected, tally, 6);
 }
 
@@ -153,7 +153,7 @@ void test_check_that_groups_of_four_are_created_properly_even_when_there_are_mor
     uint16_t tally[6] = { 0, 0, 0, 0, 0, 0 };
     const uint16_t basket[] = {1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 4, 4, 5, 5};
     total(ARRAY_SIZE(basket), basket, tally);
-    const uint16_t expected[6] = {0, 0, 0, 4, 0, 2};
+    const uint16_t expected[6] = {0, 0, 0, 2, 4, 0};
     TEST_ASSERT_EQUAL_INT16_ARRAY(expected, tally, 6);
 }
 
@@ -171,7 +171,7 @@ void test_one_group_of_one_and_two_plus_three_groups_of_four_is_cheaper_than_one
     uint16_t tally[6] = { 0, 0, 0, 0, 0, 0 };
     const uint16_t basket[] = {1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5};
     total(ARRAY_SIZE(basket), basket, tally);
-    const uint16_t expected[6] = {0, 1, 1, 1, 1, 1};
+    const uint16_t expected[6] = {0, 1, 1, 0, 3, 0};
     TEST_ASSERT_EQUAL_INT16_ARRAY(expected, tally, 6);
 }
 
