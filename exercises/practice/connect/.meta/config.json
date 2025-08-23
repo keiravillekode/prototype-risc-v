@@ -1,0 +1,17 @@
+{
+  "authors": [
+    "keiravillekode"
+  ],
+  "files": {
+    "solution": [
+      "connect.s"
+    ],
+    "test": [
+      "connect_test.c"
+    ],
+    "example": [
+      ".meta/example.s"
+    ]
+  },
+  "blurb": "Compute the result for a game of Hex / Polygon."
+}
