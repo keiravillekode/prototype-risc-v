@@ -328,6 +328,14 @@
         "difficulty": 5
       },
       {
+        "slug": "bottle-song",
+        "name": "Bottle Song",
+        "uuid": "86a6f08f-efac-47d7-bc10-04178585aee1",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 5
+      },
+      {
         "slug": "largest-series-product",
         "name": "Largest Series Product",
         "uuid": "d37f2e77-117b-4994-b2ed-d628c6360dd8",
