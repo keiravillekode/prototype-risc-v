@@ -101,6 +101,35 @@ adjust:
 
 
 
+/* uint32_t score(uint16_t *tally); */
+score:
+        lhu    t1, 2(a0)
+        li     t0, 800               /* price of 1 book */
+        mul     t2, t0, t1
+
+        lhu    t1, 4(a0)
+        li     t0, 1520              /* price of 2 books */
+        mul    t3, t0, t1
+        add     t2, t2, t3
+
+        lhu    t1, 6(a0)
+        li     t0, 2160              /* price of 3 books */
+        mul    t3, t0, t1
+        add     t2, t2, t3
+
+        lhu    t1, 8(a0)
+        li     t0, 2560              /* price of 4 books */
+        mul    t3, t0, t1
+        add     t2, t2, t3
+
+        lhu    t1, 10(a0)
+        li     t0, 3000              /* price of 5 books */
+        mul    t3, t0, t1
+        add     a0, t2, t3
+
+        jalr    zero, 0(t6)             /* return */
+
+
 /* extern void total(size_t basket_count, const uint16_t *basket, uint16_t *tally); */
 total:
         jal     t6, count
@@ -108,4 +137,5 @@ total:
         jal     t6, sort
         jal     t6, difference
         jal     t6, adjust
+        jal     t6, score
         ret
