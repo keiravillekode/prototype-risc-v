@@ -29,6 +29,13 @@ def gen_func_body(prop, inp, expected):
     expected = [0] * 6
     for book in basket:
         expected[book] += 1
+
+    previous = expected[5]
+    for i in range(4, 0, -1):
+        current = expected[i]
+        expected[i] -= previous
+        previous = current
+
     str_list.append(f"const uint16_t expected[6] = {array_literal(expected)};\n")
     str_list.append(f'TEST_ASSERT_EQUAL_INT16_ARRAY(expected, tally, 6);\n')
 
