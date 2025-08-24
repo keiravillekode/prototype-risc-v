@@ -1,13 +1,9 @@
 .text
-.globl winner
+.globl winner1
 
-/* extern char winner(const char *board); */
-winner:
+/* extern char winner1(const char *board); */
+winner1:
         ret
-
-
-
-
 
 
 
