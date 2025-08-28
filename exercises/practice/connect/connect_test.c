@@ -1,5 +1,9 @@
 #include "vendor/unity.h"
 
+#include <stdio.h>
+
+#define ARRAY_SIZE(x) (sizeof(x) / sizeof((x)[0]))
+
 extern char winner(const char *board);
 
 typedef struct {
@@ -81,7 +85,7 @@ void adjacent1(const char *board, uint32_t row_length, entry_t *parents, uint32_
 }
 
 
-
+/*
 def occupant [m] [n] (board: [m][n]u8) (row: i64) (column: i64): u8 =
   if row < m then board[row][row + 2 * column] else
   match column
@@ -98,9 +102,89 @@ def root (parents: []i64) (i: i64): i64 =
     parents[i]
   in
     i
-
+*/
 
 char winner(const char *board) {
+    entry_t parents[800];
+
+    if (board[0] <= '\n') {
+        return '.'; // zero rows or zero columns
+    }
+
+    uint32_t row_length = 0;
+    uint32_t rows = 0;
+    uint32_t columns = 0;
+
+    while (board[row_length] != '\n') {
+        ++row_length;
+    }
+    ++row_length;
+
+    while (board[rows * row_length] != '\0') {
+        ++rows;
+    }
+
+    columns = (row_length + 2 - rows) / 2; // should be + 1 I think
+
+    for (int i = 0 i < ARRAY_SIZE(parents); ++i) {
+        parents[i].parent = i;
+        parents[i].rank = 0;
+    }
+    parents[TOP].rank = 100;
+    parents[LEFT].rank = 100;
+
+    for (int j = 0; j < columns; ++j) {
+        adjacent1(board, row_length, parents, TOP, 'O', 0, j); // top edge
+        adjacent1(board, row_length, parents, BOTTOM, 'O', rows - 1, j); // bottom edge
+    }
+
+    for (int i = 0; i < rows; ++i) {
+        adjacent1(board, row_length, parents, LEFT, 'O', i, 0); // left edge
+        adjacent1(board, row_length, parents, RIGHT, 'O', i, columns - 1); // right edge
+    }
+
+    for (int i = 0; i < rows; ++i) {
+
+/*
+        in
+          let parents = loop parents = parents for i < rows do
+            let parents = loop parents = parents for j < columns - 1 do
+              adjacent parents board i j i (j + 1)  -- horizontal -
+            in
+              parents
+          in
+            let parents = loop parents = parents for i < rows - 1 do
+              let parents = loop parents = parents for j < columns do
+                adjacent parents board i j (i + 1) j  -- diagonal \
+              in
+                parents
+            in
+              let parents = loop parents = parents for i < rows - 1 do
+                let parents = loop parents = parents for j < columns - 1 do
+                  adjacent parents board i (j + 1) (i + 1) j  -- diagonal /
+                in
+                  parents
+              in
+                let roottop = root parents (rows * columns + 0)
+                let rootbottom = root parents (rows * columns + 1)
+                let rootleft = root parents (rows * columns + 2)
+                let rootright = root parents (rows * columns + 3)
+                in
+                  if roottop == rootbottom then 'O' else
+                  if rootleft == rootright then 'X' else
+                  '.'
+
+
+
+*/
+    return '?';
+
+
+
+
+
+
+
 
 }
 
