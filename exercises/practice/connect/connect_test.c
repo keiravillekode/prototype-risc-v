@@ -15,21 +15,24 @@ void test_an_empty_board_has_no_winner(void) {
         "  . . . . .  \n"
         "   . . . . . \n"
         "    . . . . .\n";
-    TEST_ASSERT_EQUAL_HEX('.', winner(board));
+    const char result[2] = { winner(board), 0 };
+    TEST_ASSERT_EQUAL_STRING(".", result);
 }
 
 void test_x_can_win_on_a_1x1_board(void) {
     TEST_IGNORE();
     const char board[] =
         "X\n";
-    TEST_ASSERT_EQUAL_HEX('X', winner(board));
+    const char result[2] = { winner(board), 0 };
+    TEST_ASSERT_EQUAL_STRING("X", result);
 }
 
 void test_o_can_win_on_a_1x1_board(void) {
     TEST_IGNORE();
     const char board[] =
         "O\n";
-    TEST_ASSERT_EQUAL_HEX('O', winner(board));
+    const char result[2] = { winner(board), 0 };
+    TEST_ASSERT_EQUAL_STRING("O", result);
 }
 
 void test_only_edges_does_not_make_a_winner(void) {
@@ -39,7 +42,8 @@ void test_only_edges_does_not_make_a_winner(void) {
         " X . . X  \n"
         "  X . . X \n"
         "   X O O O\n";
-    TEST_ASSERT_EQUAL_HEX('.', winner(board));
+    const char result[2] = { winner(board), 0 };
+    TEST_ASSERT_EQUAL_STRING(".", result);
 }
 
 void test_illegal_diagonal_does_not_make_a_winner(void) {
@@ -50,7 +54,8 @@ void test_illegal_diagonal_does_not_make_a_winner(void) {
         "  O X O .  \n"
         "   . O X . \n"
         "    X X O O\n";
-    TEST_ASSERT_EQUAL_HEX('.', winner(board));
+    const char result[2] = { winner(board), 0 };
+    TEST_ASSERT_EQUAL_STRING(".", result);
 }
 
 void test_nobody_wins_crossing_adjacent_angles(void) {
@@ -61,7 +66,8 @@ void test_nobody_wins_crossing_adjacent_angles(void) {
         "  O . X O  \n"
         "   . O . X \n"
         "    . . O .\n";
-    TEST_ASSERT_EQUAL_HEX('.', winner(board));
+    const char result[2] = { winner(board), 0 };
+    TEST_ASSERT_EQUAL_STRING(".", result);
 }
 
 void test_x_wins_crossing_from_left_to_right(void) {
@@ -72,7 +78,8 @@ void test_x_wins_crossing_from_left_to_right(void) {
         "  O X O .  \n"
         "   X X O X \n"
         "    . O X .\n";
-    TEST_ASSERT_EQUAL_HEX('X', winner(board));
+    const char result[2] = { winner(board), 0 };
+    TEST_ASSERT_EQUAL_STRING("X", result);
 }
 
 void test_o_wins_crossing_from_top_to_bottom(void) {
@@ -83,7 +90,8 @@ void test_o_wins_crossing_from_top_to_bottom(void) {
         "  O O O .  \n"
         "   X X O X \n"
         "    . O X .\n";
-    TEST_ASSERT_EQUAL_HEX('O', winner(board));
+    const char result[2] = { winner(board), 0 };
+    TEST_ASSERT_EQUAL_STRING("O", result);
 }
 
 void test_x_wins_using_a_convoluted_path(void) {
@@ -94,7 +102,8 @@ void test_x_wins_using_a_convoluted_path(void) {
         "  . X . X .  \n"
         "   . X X . . \n"
         "    O O O O O\n";
-    TEST_ASSERT_EQUAL_HEX('X', winner(board));
+    const char result[2] = { winner(board), 0 };
+    TEST_ASSERT_EQUAL_STRING("X", result);
 }
 
 void test_x_wins_using_a_spiral_path(void) {
@@ -109,7 +118,8 @@ void test_x_wins_using_a_spiral_path(void) {
         "      O X X X X X O X O  \n"
         "       O O O O O O O X O \n"
         "        X X X X X X X X O\n";
-    TEST_ASSERT_EQUAL_HEX('X', winner(board));
+    const char result[2] = { winner(board), 0 };
+    TEST_ASSERT_EQUAL_STRING("X", result);
 }
 
 int main(void) {

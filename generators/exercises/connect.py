@@ -20,6 +20,8 @@ def gen_func_body(prop, inp, expected):
         else:
             str_list.append(f'    "{line}\\n";\n')
 
-    str_list.append(f"TEST_ASSERT_EQUAL_HEX('{expected}', winner(board));\n")
+    str_list.append(f'const char result[2] = {{ winner(board), 0 }};\n')
+
+    str_list.append(f'TEST_ASSERT_EQUAL_STRING("{expected}", result);\n')
     return "".join(str_list)
 
