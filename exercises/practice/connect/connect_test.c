@@ -16,9 +16,12 @@ typedef struct {
 #define BOTTOM 2
 #define RIGHT 3
 
-uint32_t root(entry_t *parents, uint32_t index);
+uint32_t root(void *unused1, void *unused2, entry_t *parents, uint32_t index);
 
-uint32_t root(entry_t *parents, uint32_t index) {
+uint32_t root(void *unused1, void *unused2, entry_t *parents, uint32_t index) {
+    unused1 = unused1;
+    unused2 = unused2;
+
     uint32_t parent = parents[index].parent;
     while (parent != index) {
         uint32_t grandparent = parents[parent].parent;
@@ -32,30 +35,35 @@ uint32_t root(entry_t *parents, uint32_t index) {
 
 // was char occupant(const char *board, uint32_t rows, uint32_t columns, uint32_t row, uint32_t column);
 
-char occupant(const char *board, uint32_t row_length, uint32_t row, uint32_t column);
+char occupant(const char *board, uint32_t row_length, void *unused, uint32_t row, uint32_t column);
 
-char occupant(const char *board, uint32_t row_length, uint32_t row, uint32_t column) {
+char occupant(const char *board, uint32_t row_length, void *unused, uint32_t row, uint32_t column) {
+    unused = unused;
+
     return board[row * row_length+ 2 * column];
 }
 
 
-void merge(entry_t *parents, uint32_t index1, uint32_t index2);
+void merge(void *unused1, void *unused2, entry_t *parents, uint32_t index1, uint32_t index2);
 
 void adjacent(const char *board, uint32_t row_length, entry_t *parents, uint32_t row1, uint32_t column1, uint32_t row2, uint32_t column2);
 
 void adjacent(const char *board, uint32_t row_length, entry_t *parents, uint32_t row1, uint32_t column1, uint32_t row2, uint32_t column2) {
-    char occupant1 = occupant(board, row_length, row1, column1);
-    char occupant2 = occupant(board, row_length, row2, column2);
+    char occupant1 = occupant(board, row_length, NULL, row1, column1);
+    char occupant2 = occupant(board, row_length, NULL, row2, column2);
     if (occupant1 != occupant2) {
         return;
     }
 
-    merge(parents, row1 * row_length + column1 + 4, row2 * row_length + column2 + 4);
+    merge(NULL, NULL, parents, row1 * row_length + column1 + 4, row2 * row_length + column2 + 4);
 }
 
-void merge(entry_t *parents, uint32_t index1, uint32_t index2) {
-    uint32_t root1 = root(parents, index1);
-    uint32_t root2 = root(parents, index2);
+void merge(void *unused1, void *unused2, entry_t *parents, uint32_t index1, uint32_t index2) {
+    unused1 = unused1;
+    unused2 = unused2;
+
+    uint32_t root1 = root(NULL, NULL, parents, index1);
+    uint32_t root2 = root(NULL, NULL, parents, index2);
     if (root1 == root2) {
         return;
     }
@@ -75,12 +83,12 @@ void merge(entry_t *parents, uint32_t index1, uint32_t index2) {
 void adjacent1(const char *board, uint32_t row_length, entry_t *parents, uint32_t index1, char occupant1, uint32_t row2, uint32_t column2);
 
 void adjacent1(const char *board, uint32_t row_length, entry_t *parents, uint32_t index1, char occupant1, uint32_t row2, uint32_t column2) {
-    char occupant2 = occupant(board, row_length, row2, column2);
+    char occupant2 = occupant(board, row_length, NULL, row2, column2);
     if (occupant1 != occupant2) {
         return;
     }
 
-    merge(parents, index1, row2 * row_length + column2 + 4);
+    merge(NULL, NULL, parents, index1, row2 * row_length + column2 + 4);
 }
 
 
@@ -166,11 +174,11 @@ char winner(const char *board) {
         }
     }
 
-    if (root(parents, BOTTOM) == TOP) {
+    if (root(NULL, NULL, parents, BOTTOM) == TOP) {
         return 'O';
     }
 
-    if (root(parents, RIGHT) == LEFT) {
+    if (root(NULL, NULL, parents, RIGHT) == LEFT) {
         return 'X';
     }
 
