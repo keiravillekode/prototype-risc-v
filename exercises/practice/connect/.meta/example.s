@@ -1,5 +1,10 @@
 .text
 
+.equ TOP 0
+.equ LEFT 1
+.equ BOTTOM 2
+.equ RIGHT 3
+
 /*
 typedef struct {
         uint32_t parent;
@@ -203,6 +208,81 @@ winner:
         sub     s3, s1, s2
         srli    s3, s3, 1               /* columns = (row_length - rows) / 2 */
 
+        mul     t0, s2, s1
+        add     t0, t0, 4               /* number of elements in parents table */
+        slli    t1, t0, 4
+        sub     sp, sp, t1
+        mov     s7, sp                  /* parents table */
+        mov     t2, 0
+
+.init_parents:
+        add     t0, t0, -1
+        slli    t1, t0, 3
+        add     t1, s7, t1
+        sw      t0, 0(t1)
+        sw      t2, 4(t1)
+        cbnz    t0, .init_parents
+
+        move    t2, 100
+        sw      t2, 4(s7)               /* parents TOP rank */
+        sw      t2, 12(s7)              /* parents LEFT rank */
+
+        move    s6, s3
+
+.top_bottom:
+        add     s6, s6, -1
+        move    a0, s0
+        move    a1, s1
+        move    a2, s7
+        move    a3, TOP
+        move    a4, 'O'
+        move    a5, 0
+        move    a6, s6
+        call    adjacent1
+
+        move    a0, s0
+        move    a1, s1
+        move    a2, s7
+        move    a3, BOTTOM
+        move    a4, 'O'
+        add     a5, s2, -1              /* rows - 1 */
+        move    a6, s6
+        call    adjacent1
+        cbnz    s6, .top_bottom
+
+        move    s5, s2
+
+.left_right:
+        add     s5, s5, -1
+        move    a0, s0
+        move    a1, s1
+        move    a2, s7
+        move    a3, LEFT
+        move    a4, 'X'
+        move    a5, s5
+        move    a6, 0
+        call    adjacent1
+
+        move    a0, s0
+        move    a1, s1
+        move    a2, s7
+        move    a3, RIGHT
+        move    a4, 'X'
+        move    a5, s5
+        add     a6, s3, -1              /* columns - 1 */
+        call    adjacent1
+
+
+
+
+        for (uint32_t j = 0; j < columns - 1; ++j) {
+            adjacent(board, row_length, parents, i, j, i, j + 1); /* horizontal - */
+        }
+
+
+
+
+        cbnz    s5, .left_right
 
 
 
@@ -246,7 +326,5 @@ winner:
         parents[i].parent = i;
         parents[i].rank = 0;
     }
-    parents[TOP].rank = 100;
-    parents[LEFT].rank = 100;
 
 
