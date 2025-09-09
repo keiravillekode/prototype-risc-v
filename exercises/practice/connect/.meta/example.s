@@ -164,9 +164,127 @@ t0 .. t6
 
 
 
-.globl winner1
 
-/* extern char winner1(const char *board); */
-winner1:
+
+
+char winner(const char *board) {
+
+    if (board[0] <= '\n') {
+        return '.'; // zero rows or zero columns
+    }
+
+    uint32_t row_length = 0;
+
+    while (board[row_length] != '\n') {
+        ++row_length;
+    }
+    ++row_length;
+
+    uint32_t rows = 1;
+    while (board[rows * row_length] != '\0') {
+        ++rows;
+    }
+
+    ++row_length;
+    uint32_t columns;
+    columns = (row_length - rows) / 2;
+  
+
+    entry_t parents[800];
+    for (uint32_t i = 0; i < ARRAY_SIZE(parents); ++i) {
+        parents[i].parent = i;
+        parents[i].rank = 0;
+    }
+    parents[TOP].rank = 100;
+    parents[LEFT].rank = 100;
+
+    for (uint32_t j = 0; j < columns; ++j) {
+        adjacent1(board, row_length, parents, TOP, 'O', 0, j); // top edge
+        adjacent1(board, row_length, parents, BOTTOM, 'O', rows - 1, j); // bottom edge
+    }
+
+    for (uint32_t i = 0; i < rows; ++i) {
+        adjacent1(board, row_length, parents, LEFT, 'X', i, 0); // left edge
+        adjacent1(board, row_length, parents, RIGHT, 'X', i, columns - 1); // right edge
+    }
+
+    for (uint32_t i = 0; i < rows; ++i) {
+        for (uint32_t j = 0; j < columns - 1; ++j) {
+            adjacent(board, row_length, parents, i, j, i, j + 1); /* horizontal - */
+        }
+    }
+
+    for (uint32_t i = 0; i < rows - 1; ++i) {
+        for (uint32_t j = 0; j < columns; ++j) {
+            adjacent(board, row_length, parents, i, j, i + 1, j); /* diagonal \ */
+        }
+    }
+
+    for (uint32_t i = 0; i < rows - 1; ++i) {
+        for (uint32_t j = 0; j < columns - 1; ++j) {
+            adjacent(board, row_length, parents, i, j + 1, i + 1, j); /* diagonal / */
+        }
+    }
+
+    if (root(NULL, NULL, parents, BOTTOM) == TOP) {
+        return 'O';
+    }
+
+    if (root(NULL, NULL, parents, RIGHT) == LEFT) {
+        return 'X';
+    }
+
+    return '.'; // no winner yet
+}
+
+
+
+
+
+.globl winner
+
+/* extern char winner(const char *board); */
+winner:
+        move    t0, '\n'
+        lb      t1, 0(a0)               /* board[0] */
+        move    t2, a0
+        move    t3, 0
+        ble     t1, t0, .winner_none
+
+.find_row_length:
+        lb      t1, 0(t2)               /* board[0] */
+        add     t2, t2, 1
+        bne     t1, t0, .find_row_length
+
+        sub     t2, t2, a0              /* row_length */
+
+.find_rows:
+        add     t3, t3, 1               /* rows */
+        mul     t4, t3, t2              /* rows * row_length */
+        add     t4, a0, t4
+        lb      t4, 0(t4)               /* board[rows * row_length] */
+        bnez    t4, .find_rows
+
+        add     t2, t2, 1               /* row_length */
+        sub     t4, t2, t3
+        srli    t4, t4, 1               /* columns = (row_length - rows) / 2 */
+
+
+
+    entry_t parents[800];
+    for (uint32_t i = 0; i < ARRAY_SIZE(parents); ++i) {
+        parents[i].parent = i;
+        parents[i].rank = 0;
+    }
+    parents[TOP].rank = 100;
+    parents[LEFT].rank = 100;
+
+
+
+
+.winner_none:
+        move    t0, '.'
         ret
+
+
 

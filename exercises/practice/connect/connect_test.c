@@ -45,8 +45,9 @@ void adjacent(const char *board, uint32_t row_length, entry_t *parents, uint32_t
 void adjacent1(const char *board, uint32_t row_length, entry_t *parents, uint32_t index1, char occupant1, uint32_t row2, uint32_t column2);
 
 
+char winner2(const char *board) {
 
-char winner(const char *board) {
+char winner2(const char *board) {
 
     if (board[0] <= '\n') {
         return '.'; // zero rows or zero columns
