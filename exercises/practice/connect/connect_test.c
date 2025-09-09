@@ -31,23 +31,6 @@ typedef struct {
 
 uint32_t root(void *unused1, void *unused2, entry_t *parents, uint32_t index);
 
-/*
-uint32_t root(void *unused1, void *unused2, entry_t *parents, uint32_t index) {
-    unused1 = unused1;
-    unused2 = unused2;
-
-    uint32_t parent = parents[index].parent;
-    while (parent != index) {
-        uint32_t grandparent = parents[parent].parent;
-        parents[index].parent = grandparent;
-        index = parent;
-
-        parent = grandparent;
-    }
-    return index;
-}
-*/
-
 
 char occupant(const char *board, uint32_t row_length, void *unused, uint32_t row, uint32_t column);
 
@@ -67,27 +50,6 @@ void adjacent(const char *board, uint32_t row_length, entry_t *parents, uint32_t
     merge(NULL, NULL, parents, row1 * row_length + column1 + 4, row2 * row_length + column2 + 4);
 }
 
-void merge(void *unused1, void *unused2, entry_t *parents, uint32_t index1, uint32_t index2) {
-    unused1 = unused1;
-    unused2 = unused2;
-
-    uint32_t root1 = root(NULL, NULL, parents, index1);
-    uint32_t root2 = root(NULL, NULL, parents, index2);
-    if (root1 == root2) {
-        return;
-    }
-
-    if (parents[root1].rank < parents[root2].rank) {
-        uint32_t temp = root1;
-        root1 = root2;
-        root2 = temp;
-    }
-
-    parents[root2].parent = root1;
-    if (parents[root1].rank == parents[root2].rank) {
-        parents[root1].rank++;
-    }
-}
 
 void adjacent1(const char *board, uint32_t row_length, entry_t *parents, uint32_t index1, char occupant1, uint32_t row2, uint32_t column2);
 

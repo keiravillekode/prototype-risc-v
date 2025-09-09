@@ -19,15 +19,59 @@ root:
 .root_loop:
         slli    t4, a4, 3
         add     t4, a2, t4              /* address of parents[parent] */
-        lw      a5, 0(t4)               /* grandparent = parents[parent].parent */
-        move    a3, a4
-        move    a4, a5
+        move    a3, a4                  /* index = parent */
+        lw      a4, 0(t4)               /* parent = parents[parent].parent, i.e. grandparent */
 
 .root_test:
         bne     a4, a3, .root_loop
 
         move    a0, a3
         ret
+
+
+.globl merge
+
+/* void merge(void *unused1, void *unused2, entry_t *parents, uint32_t index1, uint32_t index2) */
+merge:
+        move    t0, ra
+        move    t1, a4                  /* index2 */
+        call    root
+        move    a1, a0                  /* root1 */
+        move    a3, t1                  /* index2 */
+        call    root                    /* writes root2 in a0 */
+        beq     a0, a1, .merge_return
+
+        slli    t3, a1, 3
+        add     t3, a2, t3              /* address of parents[root1] */
+        lw      a3, 4(t3)               /* rank of root1 */
+
+        slli    t4, a0, 3
+        add     t4, a2, t4              /* address of parents[root2] */
+        lw      a4, 4(t4)               /* rank of root2 */
+
+        bge     a3, a4, .merge_reparent
+
+        xor     a0, a0, a1
+        xor     a1, a1, a0
+        xor     a0, a0, a1
+
+        xor     t3, t3, t4
+        xor     t4, t4, t3
+        xor     t3, t3, t4
+
+        xor     a3, a3, a4
+        xor     a4, a4, a3
+        xor     a3, a3, a4
+
+.merge_reparent:
+        sw      a1, 0(t4)               /* update parent of root2 to root1 */
+        bne     a3, a4, .merge_return
+
+        addi    a3, a3, 1
+        sw      a3, 4(t3)               /* increment rank of root1 */
+
+.merge_return:
+        jalr    zero, 0(t0)             /* return */
 
 
 
