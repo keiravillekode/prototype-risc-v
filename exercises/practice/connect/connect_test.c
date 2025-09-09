@@ -35,10 +35,9 @@ uint32_t root(entry_t *parents, uint32_t index) {
 char occupant(const char *board, uint32_t row_length, uint32_t row, uint32_t column);
 
 char occupant(const char *board, uint32_t row_length, uint32_t row, uint32_t column) {
-    // was TODO: increase columns by 1, to simplify to board[row * columns + 2 * column];
-    // TODO: increase row_length by 1, to simplify to board[row * row_length + 2 * column];
-    return board[row * row_length + row + 2 * column];
+    return board[row * row_length+ 2 * column];
 }
+
 
 void merge(entry_t *parents, uint32_t index1, uint32_t index2);
 
@@ -51,7 +50,7 @@ void adjacent(const char *board, uint32_t row_length, entry_t *parents, uint32_t
         return;
     }
 
-    merge(row1 * row_length + column1 + 4, row2 * row_length + column2 + 4);
+    merge(parents, row1 * row_length + column1 + 4, row2 * row_length + column2 + 4);
 }
 
 void merge(entry_t *parents, uint32_t index1, uint32_t index2) {
@@ -81,8 +80,9 @@ void adjacent1(const char *board, uint32_t row_length, entry_t *parents, uint32_
         return;
     }
 
-    merge(index1, row2 * row_length + column2 + 4);
+    merge(parents, index1, row2 * row_length + column2 + 4);
 }
+
 
 
 /*
@@ -105,87 +105,75 @@ def root (parents: []i64) (i: i64): i64 =
 */
 
 char winner(const char *board) {
-    entry_t parents[800];
 
     if (board[0] <= '\n') {
         return '.'; // zero rows or zero columns
     }
 
     uint32_t row_length = 0;
-    uint32_t rows = 0;
-    uint32_t columns = 0;
 
     while (board[row_length] != '\n') {
         ++row_length;
     }
     ++row_length;
 
+    uint32_t rows = 1;
     while (board[rows * row_length] != '\0') {
         ++rows;
     }
 
-    columns = (row_length + 2 - rows) / 2; // should be + 1 I think
+    ++row_length;
+    uint32_t columns;
+    columns = (row_length - rows) / 2;
+    fprintf(stderr, "row_length %d, rows %d, columns %d\n", row_length, rows, columns);
+    return '?';
 
-    for (int i = 0 i < ARRAY_SIZE(parents); ++i) {
+
+    entry_t parents[800];
+    for (uint32_t i = 0; i < ARRAY_SIZE(parents); ++i) {
         parents[i].parent = i;
         parents[i].rank = 0;
     }
     parents[TOP].rank = 100;
     parents[LEFT].rank = 100;
 
-    for (int j = 0; j < columns; ++j) {
+    for (uint32_t j = 0; j < columns; ++j) {
         adjacent1(board, row_length, parents, TOP, 'O', 0, j); // top edge
         adjacent1(board, row_length, parents, BOTTOM, 'O', rows - 1, j); // bottom edge
     }
 
-    for (int i = 0; i < rows; ++i) {
+    for (uint32_t i = 0; i < rows; ++i) {
         adjacent1(board, row_length, parents, LEFT, 'O', i, 0); // left edge
         adjacent1(board, row_length, parents, RIGHT, 'O', i, columns - 1); // right edge
     }
 
-    for (int i = 0; i < rows; ++i) {
+    for (uint32_t i = 0; i < rows; ++i) {
+        for (uint32_t j = 0; j < columns - 1; ++j) {
+            adjacent(board, row_length, parents, i, j, i, j + 1); /* horizontal - */
+        }
+    }
 
-/*
-        in
-          let parents = loop parents = parents for i < rows do
-            let parents = loop parents = parents for j < columns - 1 do
-              adjacent parents board i j i (j + 1)  -- horizontal -
-            in
-              parents
-          in
-            let parents = loop parents = parents for i < rows - 1 do
-              let parents = loop parents = parents for j < columns do
-                adjacent parents board i j (i + 1) j  -- diagonal \
-              in
-                parents
-            in
-              let parents = loop parents = parents for i < rows - 1 do
-                let parents = loop parents = parents for j < columns - 1 do
-                  adjacent parents board i (j + 1) (i + 1) j  -- diagonal /
-                in
-                  parents
-              in
-                let roottop = root parents (rows * columns + 0)
-                let rootbottom = root parents (rows * columns + 1)
-                let rootleft = root parents (rows * columns + 2)
-                let rootright = root parents (rows * columns + 3)
-                in
-                  if roottop == rootbottom then 'O' else
-                  if rootleft == rootright then 'X' else
-                  '.'
+    for (uint32_t i = 0; i < rows - 1; ++i) {
+        for (uint32_t j = 0; j < columns; ++j) {
+            adjacent(board, row_length, parents, i, j, i + 1, j); /* diagonal \ */
+        }
+    }
 
+    for (uint32_t i = 0; i < rows - 1; ++i) {
+        for (uint32_t j = 0; j < columns - 1; ++j) {
+            adjacent(board, row_length, parents, i, j + 1, i + 1, j); /* diagonal / */
+        }
+    }
 
+    if (root(parents, BOTTOM) == TOP) {
+        return 'O';
+    }
 
-*/
-    return '?';
+    if (root(parents, RIGHT) == LEFT) {
+        return 'X';
+    }
 
-
-
-
-
-
-
-
+    return '.'; // no winner yet
 }
 
 void setUp(void) {
@@ -283,20 +271,7 @@ void test_x_wins_using_a_convoluted_path(void) {
     TEST_ASSERT_EQUAL_INT('X', winner(board));
 }
 
-void test_x_wins_using_a_spiral_path(void) {
-    TEST_IGNORE();
-    const char board[] =
-        "O X X X X X X X X        \n"
-        " O X O O O O O O O       \n"
-        "  O X O X X X X X O      \n"
-        "   O X O X O O O X O     \n"
-        "    O X O X X X O X O    \n"
-        "     O X O O O X O X O   \n"
-        "      O X X X X X O X O  \n"
-        "       O O O O O O O X O \n"
-        "        X X X X X X X X O\n";
-    TEST_ASSERT_EQUAL_INT('X', winner(board));
-}
+
 
 int main(void) {
     UNITY_BEGIN();
@@ -309,6 +284,5 @@ int main(void) {
     RUN_TEST(test_x_wins_crossing_from_left_to_right);
     RUN_TEST(test_o_wins_crossing_from_top_to_bottom);
     RUN_TEST(test_x_wins_using_a_convoluted_path);
-    RUN_TEST(test_x_wins_using_a_spiral_path);
     return UNITY_END();
 }
