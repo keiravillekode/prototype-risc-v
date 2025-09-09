@@ -31,6 +31,16 @@ root:
 
 
 
+.globl occupant
+
+/* char occupant(const char *board, uint32_t row_length, void *unused, uint32_t row, uint32_t column) */
+occupant:
+        slli    a4, a4, 1               /* column * 2 */
+        mul     a3, a3, a1              /* row * row_length */
+        add     a3, a0, a3
+        add     a3, a3, a4
+        lb      a0, 0(a3)
+        ret
 
 
 .globl winner1

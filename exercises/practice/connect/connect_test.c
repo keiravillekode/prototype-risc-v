@@ -48,15 +48,9 @@ uint32_t root(void *unused1, void *unused2, entry_t *parents, uint32_t index) {
 }
 */
 
-// was char occupant(const char *board, uint32_t rows, uint32_t columns, uint32_t row, uint32_t column);
 
 char occupant(const char *board, uint32_t row_length, void *unused, uint32_t row, uint32_t column);
 
-char occupant(const char *board, uint32_t row_length, void *unused, uint32_t row, uint32_t column) {
-    unused = unused;
-
-    return board[row * row_length+ 2 * column];
-}
 
 
 void merge(void *unused1, void *unused2, entry_t *parents, uint32_t index1, uint32_t index2);
