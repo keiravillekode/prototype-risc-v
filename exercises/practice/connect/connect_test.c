@@ -6,6 +6,19 @@
 
 extern char winner(const char *board);
 
+
+/*
+
+ thoughts - we can have TOP LEFT RIGHT BOTTOM at the end,
+ avoid the + 4
+
+ we can make use of the fact that every second square is a space,
+ to halve the table size.
+
+ Do we want to have 16 bits instead of 32 bits for parent / rank?
+ 
+*/
+
 typedef struct {
     uint32_t parent;
     uint32_t rank;
@@ -92,26 +105,6 @@ void adjacent1(const char *board, uint32_t row_length, entry_t *parents, uint32_
 }
 
 
-
-/*
-def occupant [m] [n] (board: [m][n]u8) (row: i64) (column: i64): u8 =
-  if row < m then board[row][row + 2 * column] else
-  match column
-    case 0 -> 'O'  -- top edge
-    case 1 -> 'O'  -- bottom edge
-    case 2 -> 'X'  -- left edge
-    case 3 -> 'X'  -- right edge
-    case _ -> assert false '.'
-
-
-
-def root (parents: []i64) (i: i64): i64 =
-  let i = loop i = i while parents[i] != i do
-    parents[i]
-  in
-    i
-*/
-
 char winner(const char *board) {
 
     if (board[0] <= '\n') {
@@ -133,10 +126,7 @@ char winner(const char *board) {
     ++row_length;
     uint32_t columns;
     columns = (row_length - rows) / 2;
-    /*
-    fprintf(stderr, "row_length %d, rows %d, columns %d\n", row_length, rows, columns);
-    return '?';
-*/
+  
 
     entry_t parents[800];
     for (uint32_t i = 0; i < ARRAY_SIZE(parents); ++i) {
