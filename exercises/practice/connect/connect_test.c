@@ -144,8 +144,8 @@ char winner(const char *board) {
     }
 
     for (uint32_t i = 0; i < rows; ++i) {
-        adjacent1(board, row_length, parents, LEFT, 'O', i, 0); // left edge
-        adjacent1(board, row_length, parents, RIGHT, 'O', i, columns - 1); // right edge
+        adjacent1(board, row_length, parents, LEFT, 'X', i, 0); // left edge
+        adjacent1(board, row_length, parents, RIGHT, 'X', i, columns - 1); // right edge
     }
 
     for (uint32_t i = 0; i < rows; ++i) {
