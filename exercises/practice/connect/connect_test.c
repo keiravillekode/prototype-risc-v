@@ -40,15 +40,6 @@ void merge(void *unused1, void *unused2, entry_t *parents, uint32_t index1, uint
 
 void adjacent(const char *board, uint32_t row_length, entry_t *parents, uint32_t row1, uint32_t column1, uint32_t row2, uint32_t column2);
 
-void adjacent(const char *board, uint32_t row_length, entry_t *parents, uint32_t row1, uint32_t column1, uint32_t row2, uint32_t column2) {
-    char occupant1 = occupant(board, row_length, NULL, row1, column1);
-    char occupant2 = occupant(board, row_length, NULL, row2, column2);
-    if (occupant1 != occupant2) {
-        return;
-    }
-
-    merge(NULL, NULL, parents, row1 * row_length + column1 + 4, row2 * row_length + column2 + 4);
-}
 
 
 void adjacent1(const char *board, uint32_t row_length, entry_t *parents, uint32_t index1, char occupant1, uint32_t row2, uint32_t column2);

@@ -81,9 +81,9 @@ merge:
 occupant:
         slli    a4, a4, 1               /* column * 2 */
         mul     a3, a3, a1              /* row * row_length */
-        add     a3, a0, a3
-        add     a3, a3, a4
-        lb      a0, 0(a3)
+        add     a3, a3, a4              /* index into board */
+        add     a4, a0, a3
+        lb      a0, 0(a4)
         ret
 
 .globl adjacent1
@@ -117,6 +117,43 @@ adjacent1:
 .adjacent1_return:
         ret
 
+
+.globl adjacent
+
+/* void adjacent(const char *board, uint32_t row_length, entry_t *parents, uint32_t row1, uint32_t column1, uint32_t row2, uint32_t column2) */
+adjacent:
+        mul     t0, a5, a1
+        add     t0, t0, a6
+        add     t0, t0, 4               /* row2 * row_length + column2 + 4 */
+
+        mul     t1, a3, a1
+        add     t1, t1, a4
+        add     t1, t1, 4               /* row1 * row_length + column1 + 4 */
+
+        add     sp, sp, -32
+        sd      ra, 0(sp)
+        sd      a0, 8(sp)               /* board */
+
+        call    occupant
+        move    t2, a0                  /* occupant1 */
+
+        ld      a0, 8(sp)               /* board */
+
+        move    a3, a5                  /* row2 */
+        move    a4, a6                  /* column2 */
+        call    occupant
+
+        ld      ra, 0(sp)
+        add     sp, sp, 32
+
+        bne     a0, t2, .adjacent_return
+
+        move    a3, t1
+        move    a4, t0
+        j       merge                   /* tail call */
+
+.adjacent_return:
+        ret
 
 
 /*
