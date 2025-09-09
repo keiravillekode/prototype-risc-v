@@ -125,9 +125,10 @@ char winner(const char *board) {
     ++row_length;
     uint32_t columns;
     columns = (row_length - rows) / 2;
+    /*
     fprintf(stderr, "row_length %d, rows %d, columns %d\n", row_length, rows, columns);
     return '?';
-
+*/
 
     entry_t parents[800];
     for (uint32_t i = 0; i < ARRAY_SIZE(parents); ++i) {
