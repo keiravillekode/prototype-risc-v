@@ -31,6 +31,7 @@ typedef struct {
 
 uint32_t root(void *unused1, void *unused2, entry_t *parents, uint32_t index);
 
+/*
 uint32_t root(void *unused1, void *unused2, entry_t *parents, uint32_t index) {
     unused1 = unused1;
     unused2 = unused2;
@@ -45,6 +46,7 @@ uint32_t root(void *unused1, void *unused2, entry_t *parents, uint32_t index) {
     }
     return index;
 }
+*/
 
 // was char occupant(const char *board, uint32_t rows, uint32_t columns, uint32_t row, uint32_t column);
 
