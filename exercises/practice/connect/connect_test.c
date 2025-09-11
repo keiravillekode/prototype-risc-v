@@ -1,6 +1,78 @@
 #include "vendor/unity.h"
 
+#include <stdio.h>
+
 extern char winner(const char *board);
+
+char winner(const char *board) {
+    const char *iter = board;
+    if (*iter <= '\n') {
+        return '.'; // zero rows or zero columns
+    }
+
+    while (*iter++ != '\n') {}
+    uint32_t row_length = iter - board;
+
+    uint32_t rows = 1;
+    while (*iter != '\0') {
+        iter += row_length;
+        ++rows;
+    }
+
+    ++row_length;
+    uint32_t columns = (row_length - rows) / 2;
+  
+
+/*
+    fprintf(stderr, "%d %d %d\n", row_length, rows, columns);
+    return '?';
+*/
+
+    char seen[800];
+    for (int i = 0; i < 800; ++i) {
+        seen[i] = 0;
+    }
+    /*
+    We need a "seen" record that is the same size as  [iter - board]. OR    row_length * row + column
+    shift right 4
+    add 1
+    shift left 4
+
+    this gives final size */
+
+    char queue_row[800];
+    char queue_column[800];
+    uint32_t queue_len = 0;
+    /*
+    we need a queue, and a head of queue
+    each entry in queue will be a (row, column) pair
+    */
+
+    for (uint32_t column = 0; column < columns; ++column) {
+        uint32_t row = rows - 1;
+        uint32_t index = row * row_length + column * 2;
+        if (board[index] == 'O') {
+            seen[index] = 1;
+            queue_row[queue_len] = row;
+            queue_column[queue_len] = column;
+            queue_len += 1;
+        }
+    }
+
+    loop along bottom row. If O, add to queue and mark seen
+    loop along right column. If X, add to queue and mark seen
+
+    when we take an entry off the queue:
+      we read the character   row_length * row + column
+      if O and row + 1 == rows, we have winner.  [better to use row 0]
+      if X and column + 1 == rows, we have winner.  [better to use column 0]
+      then we go all 6 neighbours:
+        if next_row >= 0 and next_column >= 0 and next_row < rows and next_col < colums
+            read the character   row_length * row + column
+            if different, move on
+            if "seen", move on
+            add to queue, mark seen
+}
 
 void setUp(void) {
 }

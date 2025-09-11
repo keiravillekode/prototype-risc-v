@@ -1,6 +1,5 @@
 .text
-.globl winner
+.globl winner1
 
-winner:
-        li a0, 'X'
+winner1:
         ret
