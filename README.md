@@ -1,6 +1,6 @@
 # Prototype RISC-V Assembly Track
 
-Exercism exercises in 64 bit RISC-V Assembly.
+Exercism exercises in 32 bit RISC-V Assembly.
 
 ## Contributing
 
