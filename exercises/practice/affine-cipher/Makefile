@@ -4,7 +4,7 @@ CC = /opt/riscv/bin/riscv32-unknown-linux-musl-gcc
 CFLAGS = -g -Wall -Wextra -pedantic -Werror
 LDFLAGS =
 
-ALL_LDFLAGS = -pie -Wl,--fatal-warnings
+ALL_LDFLAGS = -static -Wl,--fatal-warnings
 
 ALL_CFLAGS = -std=c99 -fPIE $(CFLAGS)
 ALL_LDFLAGS += $(LDFLAGS)
@@ -16,7 +16,7 @@ ALL_OBJS = $(filter-out example.o,$(C_OBJS) $(AS_OBJS) vendor/unity.o)
 CC_CMD = $(CC) $(ALL_CFLAGS) -c -o $@ $<
 
 all: tests
-	qemu-riscv32 -L /opt/riscv/sysroot ./$<
+	qemu-riscv32 ./$<
 
 tests: $(ALL_OBJS)
 	@$(CC) $(ALL_CFLAGS) $(ALL_LDFLAGS) -o $@ $(ALL_OBJS)
