@@ -42,7 +42,7 @@ def gen_func_body(prop, inp, expected):
     str_list.append(
         f'const size_t length = {prop}(buffer, "{input_string}", {index});\n'
     )
-    str_list.append("TEST_ASSERT_EQUAL_UINT64(ARRAY_SIZE(expected), length);\n")
+    str_list.append("TEST_ASSERT_EQUAL_UINT32(ARRAY_SIZE(expected), length);\n")
     str_list.append(
         "TEST_ASSERT_EQUAL_INT32_ARRAY(expected, buffer, ARRAY_SIZE(expected));\n"
     )
