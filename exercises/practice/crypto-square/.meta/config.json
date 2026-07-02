@@ -4,13 +4,13 @@
   ],
   "files": {
     "solution": [
-      "crypto_square.s"
+      "crypto_square.S"
     ],
     "test": [
       "crypto_square_test.c"
     ],
     "example": [
-      ".meta/example.s"
+      ".meta/example.S"
     ]
   },
   "blurb": "Implement the classic method for composing secret messages called a square code.",

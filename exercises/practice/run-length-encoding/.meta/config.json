@@ -4,13 +4,13 @@
   ],
   "files": {
     "solution": [
-      "run_length_encoding.s"
+      "run_length_encoding.S"
     ],
     "test": [
       "run_length_encoding_test.c"
     ],
     "example": [
-      ".meta/example.s"
+      ".meta/example.S"
     ]
   },
   "blurb": "Implement run-length encoding and decoding.",

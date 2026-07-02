@@ -4,13 +4,13 @@
   ],
   "files": {
     "solution": [
-      "triangle.s"
+      "triangle.S"
     ],
     "test": [
       "triangle_test.c"
     ],
     "example": [
-      ".meta/example.s"
+      ".meta/example.S"
     ]
   },
   "blurb": "Determine if a triangle is equilateral, isosceles, or scalene.",

@@ -4,13 +4,13 @@
   ],
   "files": {
     "solution": [
-      "book_store.s"
+      "book_store.S"
     ],
     "test": [
       "book_store_test.c"
     ],
     "example": [
-      ".meta/example.s"
+      ".meta/example.S"
     ]
   },
   "blurb": "To try and encourage more sales of different books from a popular 5 book series, a bookshop has decided to offer discounts of multiple-book purchases.",

@@ -4,13 +4,13 @@
   ],
   "files": {
     "solution": [
-      "difference_of_squares.s"
+      "difference_of_squares.S"
     ],
     "test": [
       "difference_of_squares_test.c"
     ],
     "example": [
-      ".meta/example.s"
+      ".meta/example.S"
     ]
   },
   "blurb": "Find the difference between the square of the sum and the sum of the squares of the first N natural numbers.",

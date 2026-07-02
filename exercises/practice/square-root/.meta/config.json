@@ -4,13 +4,13 @@
   ],
   "files": {
     "solution": [
-      "square_root.s"
+      "square_root.S"
     ],
     "test": [
       "square_root_test.c"
     ],
     "example": [
-      ".meta/example.s"
+      ".meta/example.S"
     ]
   },
   "blurb": "Given a natural radicand, return its square root.",

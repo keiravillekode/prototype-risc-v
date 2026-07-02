@@ -4,13 +4,13 @@
   ],
   "files": {
     "solution": [
-      "isbn_verifier.s"
+      "isbn_verifier.S"
     ],
     "test": [
       "isbn_verifier_test.c"
     ],
     "example": [
-      ".meta/example.s"
+      ".meta/example.S"
     ]
   },
   "blurb": "Check if a given string is a valid ISBN-10 number.",

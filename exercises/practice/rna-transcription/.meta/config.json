@@ -4,13 +4,13 @@
   ],
   "files": {
     "solution": [
-      "rna_transcription.s"
+      "rna_transcription.S"
     ],
     "test": [
       "rna_transcription_test.c"
     ],
     "example": [
-      ".meta/example.s"
+      ".meta/example.S"
     ]
   },
   "blurb": "Given a DNA strand, return its RNA complement.",

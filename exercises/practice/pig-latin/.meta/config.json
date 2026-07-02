@@ -4,13 +4,13 @@
   ],
   "files": {
     "solution": [
-      "pig_latin.s"
+      "pig_latin.S"
     ],
     "test": [
       "pig_latin_test.c"
     ],
     "example": [
-      ".meta/example.s"
+      ".meta/example.S"
     ]
   },
   "blurb": "Implement a program that translates from English to Pig Latin.",

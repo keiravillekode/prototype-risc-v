@@ -4,13 +4,13 @@
   ],
   "files": {
     "solution": [
-      "yacht.s"
+      "yacht.S"
     ],
     "test": [
       "yacht_test.c"
     ],
     "example": [
-      ".meta/example.s"
+      ".meta/example.S"
     ]
   },
   "blurb": "Score a single throw of dice in the game Yacht.",

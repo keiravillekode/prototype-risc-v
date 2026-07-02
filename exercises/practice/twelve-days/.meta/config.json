@@ -4,13 +4,13 @@
   ],
   "files": {
     "solution": [
-      "twelve_days.s"
+      "twelve_days.S"
     ],
     "test": [
       "twelve_days_test.c"
     ],
     "example": [
-      ".meta/example.s"
+      ".meta/example.S"
     ]
   },
   "blurb": "Output the lyrics to 'The Twelve Days of Christmas'.",

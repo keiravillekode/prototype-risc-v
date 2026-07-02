@@ -4,13 +4,13 @@
   ],
   "files": {
     "solution": [
-      "pythagorean_triplet.s"
+      "pythagorean_triplet.S"
     ],
     "test": [
       "pythagorean_triplet_test.c"
     ],
     "example": [
-      ".meta/example.s"
+      ".meta/example.S"
     ]
   },
   "blurb": "Given an integer N, find all Pythagorean triplets for which a + b + c = N.",

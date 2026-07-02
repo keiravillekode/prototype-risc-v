@@ -4,13 +4,13 @@
   ],
   "files": {
     "solution": [
-      "secret_handshake.s"
+      "secret_handshake.S"
     ],
     "test": [
       "secret_handshake_test.c"
     ],
     "example": [
-      ".meta/example.s"
+      ".meta/example.S"
     ]
   },
   "blurb": "Given a decimal number, convert it to the appropriate sequence of events for a secret handshake.",

@@ -4,13 +4,13 @@
   ],
   "files": {
     "solution": [
-      "variable_length_quantity.s"
+      "variable_length_quantity.S"
     ],
     "test": [
       "variable_length_quantity_test.c"
     ],
     "example": [
-      ".meta/example.s"
+      ".meta/example.S"
     ]
   },
   "blurb": "Implement variable length quantity encoding and decoding.",

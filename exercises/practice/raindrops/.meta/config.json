@@ -4,13 +4,13 @@
   ],
   "files": {
     "solution": [
-      "raindrops.s"
+      "raindrops.S"
     ],
     "test": [
       "raindrops_test.c"
     ],
     "example": [
-      ".meta/example.s"
+      ".meta/example.S"
     ]
   },
   "blurb": "Convert a number into its corresponding raindrop sounds - Pling, Plang and Plong.",

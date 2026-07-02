@@ -4,13 +4,13 @@
   ],
   "files": {
     "solution": [
-      "luhn.s"
+      "luhn.S"
     ],
     "test": [
       "luhn_test.c"
     ],
     "example": [
-      ".meta/example.s"
+      ".meta/example.S"
     ]
   },
   "blurb": "Given a number determine whether or not it is valid per the Luhn formula.",

@@ -4,13 +4,13 @@
   ],
   "files": {
     "solution": [
-      "hello_world.s"
+      "hello_world.S"
     ],
     "test": [
       "hello_world_test.c"
     ],
     "example": [
-      ".meta/example.s"
+      ".meta/example.S"
     ]
   },
   "blurb": "Exercism's classic introductory exercise. Just say \"Hello, World!\".",

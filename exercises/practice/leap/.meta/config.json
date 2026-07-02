@@ -4,13 +4,13 @@
   ],
   "files": {
     "solution": [
-      "leap.s"
+      "leap.S"
     ],
     "test": [
       "leap_test.c"
     ],
     "example": [
-      ".meta/example.s"
+      ".meta/example.S"
     ]
   },
   "blurb": "Determine whether a given year is a leap year.",

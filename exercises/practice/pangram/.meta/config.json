@@ -4,13 +4,13 @@
   ],
   "files": {
     "solution": [
-      "pangram.s"
+      "pangram.S"
     ],
     "test": [
       "pangram_test.c"
     ],
     "example": [
-      ".meta/example.s"
+      ".meta/example.S"
     ]
   },
   "blurb": "Determine if a sentence is a pangram.",

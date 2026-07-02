@@ -4,13 +4,13 @@
   ],
   "files": {
     "solution": [
-      "isogram.s"
+      "isogram.S"
     ],
     "test": [
       "isogram_test.c"
     ],
     "example": [
-      ".meta/example.s"
+      ".meta/example.S"
     ]
   },
   "blurb": "Determine if a word or phrase is an isogram.",

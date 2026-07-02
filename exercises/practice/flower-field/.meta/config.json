@@ -4,13 +4,13 @@
   ],
   "files": {
     "solution": [
-      "flower_field.s"
+      "flower_field.S"
     ],
     "test": [
       "flower_field_test.c"
     ],
     "example": [
-      ".meta/example.s"
+      ".meta/example.S"
     ]
   },
   "blurb": "Mark all the flowers in a garden."

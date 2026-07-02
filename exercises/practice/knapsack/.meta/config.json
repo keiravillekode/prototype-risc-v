@@ -4,13 +4,13 @@
   ],
   "files": {
     "solution": [
-      "knapsack.s"
+      "knapsack.S"
     ],
     "test": [
       "knapsack_test.c"
     ],
     "example": [
-      ".meta/example.s"
+      ".meta/example.S"
     ]
   },
   "blurb": "Given a knapsack that can only carry a certain weight, determine which items to put in the knapsack in order to maximize their combined value.",

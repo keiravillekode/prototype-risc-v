@@ -4,13 +4,13 @@
   ],
   "files": {
     "solution": [
-      "nth_prime.s"
+      "nth_prime.S"
     ],
     "test": [
       "nth_prime_test.c"
     ],
     "example": [
-      ".meta/example.s"
+      ".meta/example.S"
     ]
   },
   "blurb": "Given a number n, determine what the nth prime is.",

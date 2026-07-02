@@ -4,13 +4,13 @@
   ],
   "files": {
     "solution": [
-      "armstrong_numbers.s"
+      "armstrong_numbers.S"
     ],
     "test": [
       "armstrong_numbers_test.c"
     ],
     "example": [
-      ".meta/example.s"
+      ".meta/example.S"
     ]
   },
   "blurb": "Determine if a number is an Armstrong number.",

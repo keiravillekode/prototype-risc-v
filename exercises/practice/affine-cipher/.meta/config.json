@@ -4,13 +4,13 @@
   ],
   "files": {
     "solution": [
-      "affine_cipher.s"
+      "affine_cipher.S"
     ],
     "test": [
       "affine_cipher_test.c"
     ],
     "example": [
-      ".meta/example.s"
+      ".meta/example.S"
     ]
   },
   "blurb": "Create an implementation of the Affine cipher, an ancient encryption algorithm from the Middle East.",

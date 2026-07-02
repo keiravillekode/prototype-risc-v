@@ -4,13 +4,13 @@
   ],
   "files": {
     "solution": [
-      "collatz_conjecture.s"
+      "collatz_conjecture.S"
     ],
     "test": [
       "collatz_conjecture_test.c"
     ],
     "example": [
-      ".meta/example.s"
+      ".meta/example.S"
     ]
   },
   "blurb": "Calculate the number of steps to reach 1 using the Collatz conjecture.",

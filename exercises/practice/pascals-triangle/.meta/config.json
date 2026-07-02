@@ -4,13 +4,13 @@
   ],
   "files": {
     "solution": [
-      "pascals_triangle.s"
+      "pascals_triangle.S"
     ],
     "test": [
       "pascals_triangle_test.c"
     ],
     "example": [
-      ".meta/example.s"
+      ".meta/example.S"
     ]
   },
   "blurb": "Compute Pascal's triangle up to a given number of rows.",

@@ -4,13 +4,13 @@
   ],
   "files": {
     "solution": [
-      "house.s"
+      "house.S"
     ],
     "test": [
       "house_test.c"
     ],
     "example": [
-      ".meta/example.s"
+      ".meta/example.S"
     ]
   },
   "blurb": "Output the nursery rhyme 'This is the House that Jack Built'.",

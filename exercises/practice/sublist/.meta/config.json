@@ -4,13 +4,13 @@
   ],
   "files": {
     "solution": [
-      "sublist.s"
+      "sublist.S"
     ],
     "test": [
       "sublist_test.c"
     ],
     "example": [
-      ".meta/example.s"
+      ".meta/example.S"
     ]
   },
   "blurb": "Write a function to determine if a list is a sublist of another list."

@@ -4,13 +4,13 @@
   ],
   "files": {
     "solution": [
-      "binary_search.s"
+      "binary_search.S"
     ],
     "test": [
       "binary_search_test.c"
     ],
     "example": [
-      ".meta/example.s"
+      ".meta/example.S"
     ]
   },
   "blurb": "Implement a binary search algorithm.",

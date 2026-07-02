@@ -4,13 +4,13 @@
   ],
   "files": {
     "solution": [
-      "food_chain.s"
+      "food_chain.S"
     ],
     "test": [
       "food_chain_test.c"
     ],
     "example": [
-      ".meta/example.s"
+      ".meta/example.S"
     ]
   },
   "blurb": "Generate the lyrics of the song 'I Know an Old Lady Who Swallowed a Fly'.",

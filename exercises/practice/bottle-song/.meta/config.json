@@ -4,13 +4,13 @@
   ],
   "files": {
     "solution": [
-      "bottle_song.s"
+      "bottle_song.S"
     ],
     "test": [
       "bottle_song_test.c"
     ],
     "example": [
-      ".meta/example.s"
+      ".meta/example.S"
     ]
   },
   "blurb": "Produce the lyrics to the popular children's repetitive song: Ten Green Bottles.",

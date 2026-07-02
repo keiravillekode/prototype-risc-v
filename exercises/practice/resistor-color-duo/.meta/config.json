@@ -4,13 +4,13 @@
   ],
   "files": {
     "solution": [
-      "resistor_color_duo.s"
+      "resistor_color_duo.S"
     ],
     "test": [
       "resistor_color_duo_test.c"
     ],
     "example": [
-      ".meta/example.s"
+      ".meta/example.S"
     ]
   },
   "blurb": "Convert color codes, as used on resistors, to a numeric value.",

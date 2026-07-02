@@ -4,13 +4,13 @@
   ],
   "files": {
     "solution": [
-      "zebra_puzzle.s"
+      "zebra_puzzle.S"
     ],
     "test": [
       "zebra_puzzle_test.c"
     ],
     "example": [
-      ".meta/example.s"
+      ".meta/example.S"
     ]
   },
   "blurb": "Solve the zebra puzzle.",

@@ -4,13 +4,13 @@
   ],
   "files": {
     "solution": [
-      "two_fer.s"
+      "two_fer.S"
     ],
     "test": [
       "two_fer_test.c"
     ],
     "example": [
-      ".meta/example.s"
+      ".meta/example.S"
     ]
   },
   "blurb": "Create a sentence of the form \"One for X, one for me.\".",

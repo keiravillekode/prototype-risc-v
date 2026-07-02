@@ -4,13 +4,13 @@
   ],
   "files": {
     "solution": [
-      "roman_numerals.s"
+      "roman_numerals.S"
     ],
     "test": [
       "roman_numerals_test.c"
     ],
     "example": [
-      ".meta/example.s"
+      ".meta/example.S"
     ]
   },
   "blurb": "Convert modern Arabic numbers into Roman numerals.",

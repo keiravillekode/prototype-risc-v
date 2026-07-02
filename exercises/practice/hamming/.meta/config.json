@@ -4,13 +4,13 @@
   ],
   "files": {
     "solution": [
-      "hamming.s"
+      "hamming.S"
     ],
     "test": [
       "hamming_test.c"
     ],
     "example": [
-      ".meta/example.s"
+      ".meta/example.S"
     ]
   },
   "blurb": "Calculate the Hamming distance between two DNA strands.",

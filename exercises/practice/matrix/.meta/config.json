@@ -4,13 +4,13 @@
   ],
   "files": {
     "solution": [
-      "matrix.s"
+      "matrix.S"
     ],
     "test": [
       "matrix_test.c"
     ],
     "example": [
-      ".meta/example.s"
+      ".meta/example.S"
     ]
   },
   "blurb": "Given a string representing a matrix of numbers, return the rows and columns of that matrix.",

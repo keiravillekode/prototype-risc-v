@@ -4,13 +4,13 @@
   ],
   "files": {
     "solution": [
-      "intergalactic_transmission.s"
+      "intergalactic_transmission.S"
     ],
     "test": [
       "intergalactic_transmission_test.c"
     ],
     "example": [
-      ".meta/example.s"
+      ".meta/example.S"
     ]
   },
   "blurb": "Add parity bits to a message for transmission",

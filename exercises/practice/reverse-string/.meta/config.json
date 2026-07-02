@@ -4,13 +4,13 @@
   ],
   "files": {
     "solution": [
-      "reverse_string.s"
+      "reverse_string.S"
     ],
     "test": [
       "reverse_string_test.c"
     ],
     "example": [
-      ".meta/example.s"
+      ".meta/example.S"
     ]
   },
   "blurb": "Reverse a given string.",

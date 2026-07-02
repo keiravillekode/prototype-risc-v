@@ -4,13 +4,13 @@
   ],
   "files": {
     "solution": [
-      "scrabble_score.s"
+      "scrabble_score.S"
     ],
     "test": [
       "scrabble_score_test.c"
     ],
     "example": [
-      ".meta/example.s"
+      ".meta/example.S"
     ]
   },
   "blurb": "Given a word, compute the Scrabble score for that word.",

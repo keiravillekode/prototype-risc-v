@@ -4,13 +4,13 @@
   ],
   "files": {
     "solution": [
-      "bob.s"
+      "bob.S"
     ],
     "test": [
       "bob_test.c"
     ],
     "example": [
-      ".meta/example.s"
+      ".meta/example.S"
     ]
   },
   "blurb": "Bob is a lackadaisical teenager. In conversation, his responses are very limited.",
