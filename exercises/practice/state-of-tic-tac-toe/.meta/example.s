@@ -6,10 +6,27 @@
 .section .rodata
 
 /* bitsets representing horizontal, vertical and diagonal lines */
-lines: .hword 0x007, 0x070, 0x700, 0x111, 0x222, 0x444, 0x124, 0x421, 0
+lines: .hword 0x00e, 0x0e0, 0xe00, 0x222, 0x444, 0x888, 0x248, 0x842, 0
 
 .text
 .globl gamestate
+
+/*
+| Register | Usage         | Type    | Description                          |
+| -------- | ------------- | ------- | ------------------------------------ |
+| `a0`     | input         | address | board                                |
+| `a0`     | output        | integer | state                                |
+| `a1`     | temporary     | address | lines array                          |
+| `a2`     | temporary     | char    | 'X'                                  |
+| `a3`     | temporary     | char    | 'O'                                  |
+| `t0`     | temporary     | integer | bitset representing X marks on board |
+| `t1`     | temporary     | integer | bitset representing O marks on board |
+| `t2`     | temporary     | integer | number of X marks on board / X win   |
+| `t3`     | temporary     | integer | number of O marks on board / O win   |
+| `t4`     | temporary     | char    | grid entry                           |
+| `t5`     | temporary     |         |                                      |
+| `t6`     | temporary     | integer | number of X marks on board           |
+*/
 
 /* extern int gamestate(const char *board); */
 gamestate:
@@ -23,6 +40,8 @@ gamestate:
         j       .read
 
 .update:
+        slli    t0, t0, 1
+        slli    t1, t1, 1
         beq     t4, a2, .x
         bne     t4, a3, .read
 
@@ -36,23 +55,48 @@ gamestate:
         addi    t2, t2, 1
 
 .read:
-        slli    t0, t0, 1
-        slli    t1, t1, 1
         lb      t4, 0(a0)               /* read board */
         addi    a0, a0, 1
         bnez    t4, .update
 
-        bgt     t1, t0, .invalid        /* number of O marks > number of X marks */
+        add     t6, t2, t3              /* number of marks */
 
-        addi    t1, t1, 1
-        bgt     t0, t1, .invalid        /* number of X marks > 1 + number of O */
+        bgt     t3, t2, .invalid        /* number of O marks > number of X marks */
 
-        srli    t0, t0, 2
-        srli    t1, t1, 2
+        addi    t3, t3, 1
+        bgt     t2, t3, .invalid        /* number of X marks > 1 + number of O */
 
+        move    t2, zero                /* found win for X? */
+        move    t3, zero                /* found win for O? */
 
+.read_line:
+        lh      t4, 0(a1)               /* read from lines */
+        addi    a1, a1, 2
+        beqz    t4, .report
 
-        move    a0, t0
+        and     t5, t0, t4
+        xor     t5, t5, t4
+        seqz    t5, t5
+        or      t2, t2, t5
+
+        and     t5, t1, t4
+        xor     t5, t5, t4
+        seqz    t5, t5
+        or      t3, t3, t5
+        j       .read_line
+
+.report:
+        or      t4, t2, t3              /* has either player won? */
+        bnez    t4, .win
+
+        addi    t6, t6, -9
+        seqz    a0, t6                  /* DRAW 1 if board is full, ONGOING 0 otherwise */
+        ret
+
+.win:
+        beq     t2, t3, .invalid
+
+        li      a0, WIN
         ret
 
 .invalid:
