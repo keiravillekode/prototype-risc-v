@@ -19,8 +19,8 @@ char winner(const char *board) {
         offset += step;
     }
 
-    fprintf(stderr, "\n%s\n", board);
-    fprintf(stderr, "columns %d, rows %d\n", columns, rows);
+    printf("\n%s\n", board);
+    printf("columns %d, rows %d\n", columns, rows);
     return '.';
 }
 
