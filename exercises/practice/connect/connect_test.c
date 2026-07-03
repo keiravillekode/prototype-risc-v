@@ -1,12 +1,35 @@
 #include "vendor/unity.h"
 
+#include <stdint.h>
+#include <stdio.h>
+
 /* extern */ char winner(const char *board);
+
+unsigned root(uint16_t* parents, unsigned node);
+
+unsigned root(uint16_t* parents, unsigned node) {
+    while (parents[node] != node)
+        node = parents[node];
+
+    return node;
+}
+
+void merge(uint16_t* parents, unsigned first, unsigned second);
+
+void merge(uint16_t* parents, unsigned first, unsigned second) {
+    first = root(parents, first);
+    second = root(parents, second);
+    parents[second] = first;
+}
 
 char winner(const char *board) {
     unsigned columns = 1;
     unsigned rows = 1;
     unsigned offset;
     unsigned step;
+
+    uint16_t parents[1024];
+    unsigned i;
 
     while (board[2 * columns - 1] != '\n')
         columns++;
@@ -18,6 +41,9 @@ char winner(const char *board) {
         step++;
         offset += step;
     }
+
+    for (i = 0; i < rows * columns + 4; ++i)
+        parents[i] = i;
 
     printf("\n%s\n", board);
     printf("columns %d, rows %d\n", columns, rows);
