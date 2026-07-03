@@ -17,16 +17,16 @@
   },
   "files": {
     "solution": [
-      "%{snake_slug}.s"
+      "%{snake_slug}.S"
     ],
     "test": [
       "%{snake_slug}_test.c"
     ],
     "example": [
-      ".meta/example.s"
+      ".meta/example.S"
     ],
     "exemplar": [
-      ".meta/exemplar.s"
+      ".meta/exemplar.S"
     ]
   },
   "exercises": {
@@ -502,6 +502,14 @@
         "practices": [],
         "prerequisites": [],
         "difficulty": 9
+      },
+      {
+        "slug": "connect",
+        "name": "Connect",
+        "uuid": "7400cd8e-864c-4a13-aa08-b16eb9971034",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 10
       }
     ],
     "foregone": [
