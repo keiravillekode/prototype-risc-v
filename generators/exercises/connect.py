@@ -11,10 +11,8 @@ def gen_func_body(prop, inp, expected):
 
     str_list = []
     str_list.append("const char board[] =\n")
-    length = max(map(len, board))
     for index in range(len(board)):
         line = board[index]
-        line = line + " " * (length - len(line))
         if index + 1 < len(board):
             str_list.append(f'    "{line}\\n"\n')
         else:
