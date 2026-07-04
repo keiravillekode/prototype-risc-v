@@ -22,6 +22,24 @@ void merge(uint16_t* parents, unsigned first, unsigned second) {
     parents[second] = first;
 }
 
+unsigned index(unsigned columns, unsigned row, unsigned column) {
+    return columns * row + column + 4;
+}
+
+char occupant(const char *board, unsigned columns, unsigned row, unsigned column) {
+    unsigned offset;
+    unsigned step;
+
+    offset = 2 * column;
+    step = 2 * columns;
+    while (row > 0) {
+        row--;
+        step++;
+        offset += step;
+    }
+    return board[offset];
+}
+
 char winner(const char *board) {
     unsigned columns = 1;
     unsigned rows = 1;
@@ -30,6 +48,7 @@ char winner(const char *board) {
 
     uint16_t parents[1024];
     unsigned i;
+    unsigned j;
 
     while (board[2 * columns - 1] != '\n')
         columns++;
@@ -47,6 +66,15 @@ char winner(const char *board) {
 
     printf("\n%s\n", board);
     printf("columns %d, rows %d\n", columns, rows);
+
+    for (i = 0; i < rows; ++i) {
+        for (j = 0; j < columns; ++j) {
+            printf("%c", occupant(board, columns, i, j));
+        }
+        printf("\n");
+    }
+
+
     return '.';
 }
 
