@@ -64,6 +64,7 @@ char winner(const char *board) {
     for (i = 0; i < rows * columns + 4; ++i)
         parents[i] = i;
 
+#if 0
     printf("\n%s\n", board);
     printf("columns %d, rows %d\n", columns, rows);
 
@@ -73,6 +74,34 @@ char winner(const char *board) {
         }
         printf("\n");
     }
+#endif
+
+    for (j = 0; j < columns; ++j) {
+        // top edge
+        if (occupant(board, columns, 0, j) == 'O') {
+            merge(parents, 0, index(columns, 0, j));
+        }
+
+        // bottom edge
+        if (occupant(board, columns, rows - 1, j) == 'O') {
+            merge(parents, 1, index(columns, rows - 1, j));
+        }
+    }
+
+    for (i = 0; i < rows; ++i) {
+        // left edge
+        if (occupant(board, columns, i, 0) == 'X') {
+            merge(parents, 2, index(columns, i, 0));
+        }
+
+        // right edge
+        if (occupant(board, columns, i, columns - 1) == 'X') {
+            merge(parents, 3, index(columns, i, columns - 1));
+        }
+    }
+
+
+
 
 
     return '.';
