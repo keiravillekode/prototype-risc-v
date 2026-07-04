@@ -88,6 +88,14 @@ char occupant(const char *board, unsigned columns, unsigned row, unsigned column
     return board[offset];
 }
 
+void edge(element_t* parents, const char *board, unsigned columns, unsigned row, unsigned column, unsigned idx, char player);
+
+void edge(element_t* parents, const char *board, unsigned columns, unsigned row, unsigned column, unsigned idx, char player) {
+    if (occupant(board, columns, row, column) == player) {
+        merge(parents, idx, index(columns, row, column));
+    }
+}
+
 char winner(const char *board) {
     unsigned columns = 1;
     unsigned rows = 1;
@@ -132,6 +140,23 @@ char winner(const char *board) {
         }
     */
 
+#if 1
+    for (j = 0; j < columns; ++j) {
+        // top edge
+        edge(parents, board, columns, 0, j, 0, 'O');
+
+        // bottom edge
+        edge(parents, board, columns, rows - 1, j, 1, 'O');
+    }
+
+    for (i = 0; i < rows; ++i) {
+        // left edge
+        edge(parents, board, columns, i, 0, 2, 'X');
+
+        // right edge
+        edge(parents, board, columns, i, columns - 1, 3, 'X');
+    }
+#else
     for (j = 0; j < columns; ++j) {
         // top edge
         if (occupant(board, columns, 0, j) == 'O') {
@@ -155,7 +180,7 @@ char winner(const char *board) {
             merge(parents, 3, index(columns, i, columns - 1));
         }
     }
-
+#endif
 
     // Ideally we would call a function like    adjacent parents board i j i (j + 1)
 
