@@ -330,17 +330,17 @@ void test_x_wins_using_a_spiral_path(void) {
 
 void test_o_wins_using_a_long_windy_path(void) {
     const char board[] =
-        "O . . . . X X X X X .\n"
+        "O . . O O X X X X X .\n"
         " O O . X X O O O . X X\n"
-        "  . O X . O . X O O . .\n"
-        "   . O X . O O X X O . .\n"
-        "    O X X X . O . O . X .\n"
-        "     O O X X O . . O O X X\n"
-        "      X O X X O O X X O . .\n"
+        "  . O X O O . X O O . X\n"
+        "   . O X O O O X X O . X\n"
+        "    O X X X . O X O . X .\n"
+        "     O O X X O . X O O X X\n"
+        "      X O X X O O X X O . X\n"
         "       . O X X X O X O X X .\n"
-        "        O X O O X O X O O . .\n"
+        "        O X O O X O X O O X .\n"
         "         O O X O O . . . O X X\n"
-        "          X X . . . . . O X . .\n";
+        "          X X . . . O O O X . .\n";
     const char result[2] = { winner(board), 0 };
     TEST_ASSERT_EQUAL_STRING("O", result);
 }
