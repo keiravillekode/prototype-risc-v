@@ -3,13 +3,27 @@
 #include <stdint.h>
 #include <stdio.h>
 
+unsigned count = 0;
+
 /* extern */ char winner(const char *board);
 
 unsigned root(uint16_t* parents, unsigned node);
 
 unsigned root(uint16_t* parents, unsigned node) {
-    while (parents[node] != node)
+
+#if 0
+    while (parents[node] != node) {
         node = parents[node];
+        count++;
+    }
+#else
+    unsigned grandparent;
+    while ((grandparent = parents[parents[node]]) != node) {
+        parents[node] = grandparent;
+        node = grandparent;
+        count++;
+    }
+#endif
 
     return node;
 }
@@ -139,12 +153,15 @@ char winner(const char *board) {
         }
     }
 
-
+#if 0
     if (root(parents, 0) == root(parents, 1))
         return 'O';
 
     if (root(parents, 2) == root(parents, 3))
         return 'X';
+#endif
+
+    printf("\n%d\n", count);
 
     return '.';
 }
