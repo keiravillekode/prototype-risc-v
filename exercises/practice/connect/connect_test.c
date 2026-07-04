@@ -76,11 +76,15 @@ char occupant(const char *board, unsigned columns, unsigned row, unsigned column
 
     offset = 2 * column;
     step = 2 * columns;
+#if 1
+    offset += row * step + row * (row + 1) / 2;
+#else
     while (row > 0) {
         row--;
         step++;
         offset += step;
     }
+#endif
     return board[offset];
 }
 
