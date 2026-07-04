@@ -12,6 +12,18 @@ typedef struct {
     uint16_t rank;
 } element_t;
 
+void init_parents(element_t* parents, unsigned rows, unsigned columns);
+
+void init_parents(element_t* parents, unsigned rows, unsigned columns) {
+    unsigned i;
+
+    for (i = 0; i < rows * columns + 4; ++i) {
+        parents[i].parent = i;
+        parents[i].rank = 0;
+    }
+
+}
+
 unsigned root(element_t* parents, unsigned node);
 
 unsigned root(element_t* parents, unsigned node) {
@@ -93,10 +105,7 @@ char winner(const char *board) {
         offset += step;
     }
 
-    for (i = 0; i < rows * columns + 4; ++i) {
-        parents[i].parent = i;
-        parents[i].rank = 0;
-    }
+    init_parents(parents, rows, columns);
 
 #if 0
     printf("\n%s\n", board);
