@@ -112,32 +112,33 @@ char winner(const char *board) {
 
     // Ideally we would call a function like    adjacent parents board i j i (j + 1)
 
-    // horizontal -
+    // - horizontal
     for (i = 0; i < rows; ++i) {
         for (j = 0; j + 1 < columns; ++j) {
             if (occupant(board, columns, i, j) == occupant(board, columns, i, j + 1)) {
-                merge(parents, 3, index(columns, i, j), index(columns, i, j + 1));
+                merge(parents, index(columns, i, j), index(columns, i, j + 1));
             }
         }
     }
 
-    // diagonal \
+    // \ diagonal 
     for (i = 0; i + 1 < rows; ++i) {
         for (j = 0; j < columns; ++j) {
             if (occupant(board, columns, i, j) == occupant(board, columns, i + 1, j)) {
-                merge(parents, 3, index(columns, i, j), index(columns, i + 1, j));
+                merge(parents, index(columns, i, j), index(columns, i + 1, j));
             }
         }
     }
 
-    // diagonal /
+    // / diagonal
     for (i = 0; i + 1 < rows; ++i) {
         for (j = 0; j + 1 < columns; ++j) {
             if (occupant(board, columns, i, j + 1) == occupant(board, columns, i + 1, j)) {
-                merge(parents, 3, index(columns, i, j + 1), index(columns, i + 1, j));
+                merge(parents, index(columns, i, j + 1), index(columns, i + 1, j));
             }
         }
     }
+
 
     if (root(parents, 0) == root(parents, 1))
         return 'O';
