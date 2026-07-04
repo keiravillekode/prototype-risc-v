@@ -16,16 +16,16 @@ unsigned root(element_t* parents, unsigned node);
 
 unsigned root(element_t* parents, unsigned node) {
 
-#if 0
-    while (parents[node].parent != node) {
-        node = parents[node].parent;
-        count++;
-    }
-#else
+#if 1
     unsigned grandparent;
     while ((grandparent = parents[parents[node].parent].parent) != node) {
         parents[node].parent = grandparent;
         node = grandparent;
+        count++;
+    }
+#else
+    while (parents[node].parent != node) {
+        node = parents[node].parent;
         count++;
     }
 #endif
@@ -173,6 +173,8 @@ char winner(const char *board) {
         }
     }
 
+    printf("\n%d\n", count);
+
 #if 0
     if (root(parents, 0) == root(parents, 1))
         return 'O';
@@ -180,8 +182,6 @@ char winner(const char *board) {
     if (root(parents, 2) == root(parents, 3))
         return 'X';
 #endif
-
-    printf("\n%d\n", count);
 
     return '.';
 }
@@ -330,17 +330,17 @@ void test_x_wins_using_a_spiral_path(void) {
 
 void test_o_wins_using_a_long_spiral_path(void) {
     const char board[] =
-        ". . . . . . . . . . .\n"
-        " . . . . . . . . . . .\n"
-        "  . . . . . . . . . . .\n"
-        "   . . . . . . . . . . .\n"
-        "    . . . . . . . . . . .\n"
-        "     . . . . . . . . . . .\n"
-        "      . . . . . . . . . . .\n"
-        "       . . . . . . . . . . .\n"
-        "        . . . . . . . . . . .\n"
-        "         . . . . . . . . . . .\n"
-        "          . . . . . . . . . . .\n";
+        "O . . . . . . . . . .\n"
+        " O O . . . O O O . . .\n"
+        "  . O . . O . . O O . .\n"
+        "   . O . . O O . . O . .\n"
+        "    O . . . . O . O . . .\n"
+        "     O O . . O . . O O . .\n"
+        "      . O . . O O . . O . .\n"
+        "       . O . . . O . O . . .\n"
+        "        O . O O . O . O O . .\n"
+        "         O O . O O . . . O . .\n"
+        "          . . . . . . . O . . .\n";
     const char result[2] = { winner(board), 0 };
     TEST_ASSERT_EQUAL_STRING("O", result);
 }
