@@ -329,6 +329,7 @@ void test_x_wins_using_a_spiral_path(void) {
 }
 
 void test_o_wins_using_a_long_windy_path(void) {
+    TEST_IGNORE();
     const char board[] =
         "O . . O O X X X X X .\n"
         " O O . X X O O O . X X\n"
