@@ -7,6 +7,27 @@ unsigned count = 0;
 
 /* extern */ char winner(const char *board);
 
+void find_dimensions(const char *board, unsigned *columns, unsigned *rows);
+
+void find_dimensions(const char *board, unsigned *columns, unsigned *rows) {
+    *columns = 1;
+    *rows = 1;
+
+    unsigned offset;
+    unsigned step;
+
+    while (board[2 * *columns - 1] != '\n')
+        (*columns)++;
+
+    offset = 2 * *columns;
+    step = offset;
+    while (board[offset]) {
+        (*rows)++;
+        step++;
+        offset += step;
+    }
+}
+
 typedef struct {
     uint16_t parent;
     uint16_t rank;
@@ -105,15 +126,70 @@ void adjacent(element_t* parents, const char *board, unsigned columns, unsigned 
 }
 
 
+void edges(element_t* parents, const char *board, unsigned columns, unsigned rows);
+
+void edges(element_t* parents, const char *board, unsigned columns, unsigned rows) {
+    unsigned i;
+    unsigned j;
+
+    for (j = 0; j < columns; ++j) {
+        // top edge
+        edge(parents, board, columns, 0, j, 0, 'O');
+
+        // bottom edge
+        edge(parents, board, columns, rows - 1, j, 1, 'O');
+    }
+
+    for (i = 0; i < rows; ++i) {
+        // left edge
+        edge(parents, board, columns, i, 0, 2, 'X');
+
+        // right edge
+        edge(parents, board, columns, i, columns - 1, 3, 'X');
+    }
+}
+
+void adjacents(element_t* parents, const char *board, unsigned columns, unsigned rows);
+
+void adjacents(element_t* parents, const char *board, unsigned columns, unsigned rows) {
+    unsigned i;
+    unsigned j;
+
+    // - horizontal
+    for (i = 0; i < rows; ++i) {
+        for (j = 0; j + 1 < columns; ++j) {
+            adjacent(parents, board, columns, i, j, i, j + 1);
+        }
+    }
+
+    // \ diagonal 
+    for (i = 0; i + 1 < rows; ++i) {
+        for (j = 0; j < columns; ++j) {
+            adjacent(parents, board, columns, i, j, i + 1, j);
+        }
+    }
+
+    // / diagonal
+    for (i = 0; i + 1 < rows; ++i) {
+        for (j = 0; j + 1 < columns; ++j) {
+            adjacent(parents, board, columns, i, j + 1, i + 1, j);
+        }
+    }
+}
+
 char winner(const char *board) {
     unsigned columns = 1;
     unsigned rows = 1;
-    unsigned offset;
-    unsigned step;
 
     element_t parents[1024];
-    unsigned i;
-    unsigned j;
+//    unsigned i;
+  //  unsigned j;
+
+#if 1
+    find_dimensions(board, &columns, &rows);
+#else
+    unsigned offset;
+    unsigned step;
 
     while (board[2 * columns - 1] != '\n')
         columns++;
@@ -125,6 +201,7 @@ char winner(const char *board) {
         step++;
         offset += step;
     }
+#endif
 
     init_parents(parents, rows, columns);
 
@@ -150,21 +227,7 @@ char winner(const char *board) {
     */
 
 #if 1
-    for (j = 0; j < columns; ++j) {
-        // top edge
-        edge(parents, board, columns, 0, j, 0, 'O');
-
-        // bottom edge
-        edge(parents, board, columns, rows - 1, j, 1, 'O');
-    }
-
-    for (i = 0; i < rows; ++i) {
-        // left edge
-        edge(parents, board, columns, i, 0, 2, 'X');
-
-        // right edge
-        edge(parents, board, columns, i, columns - 1, 3, 'X');
-    }
+    edges(parents, board, columns, rows);
 #else
     for (j = 0; j < columns; ++j) {
         // top edge
@@ -194,26 +257,7 @@ char winner(const char *board) {
     // Ideally we would call a function like    adjacent parents board i j i (j + 1)
 
 #if 1
-    // - horizontal
-    for (i = 0; i < rows; ++i) {
-        for (j = 0; j + 1 < columns; ++j) {
-            adjacent(parents, board, columns, i, j, i, j + 1);
-        }
-    }
-
-    // \ diagonal 
-    for (i = 0; i + 1 < rows; ++i) {
-        for (j = 0; j < columns; ++j) {
-            adjacent(parents, board, columns, i, j, i + 1, j);
-        }
-    }
-
-    // / diagonal
-    for (i = 0; i + 1 < rows; ++i) {
-        for (j = 0; j + 1 < columns; ++j) {
-            adjacent(parents, board, columns, i, j + 1, i + 1, j);
-        }
-    }
+    adjacents(parents, board, columns, rows);
 #else
     // - horizontal
     for (i = 0; i < rows; ++i) {
@@ -243,7 +287,7 @@ char winner(const char *board) {
     }
 #endif
 
-    printf("\n%d\n", count);
+    printf("\n%d\n", count); // 368
 
 #if 1
     if (root(parents, 0) == root(parents, 1))
