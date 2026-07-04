@@ -96,6 +96,15 @@ void edge(element_t* parents, const char *board, unsigned columns, unsigned row,
     }
 }
 
+void adjacent(element_t* parents, const char *board, unsigned columns, unsigned row1, unsigned column1, unsigned row2, unsigned column2);
+
+void adjacent(element_t* parents, const char *board, unsigned columns, unsigned row1, unsigned column1, unsigned row2, unsigned column2) {
+    if (occupant(board, columns, row1, column1) == occupant(board, columns, row2, column2)) {
+        merge(parents, index(columns, row1, column1), index(columns, row2, column2));
+    }
+}
+
+
 char winner(const char *board) {
     unsigned columns = 1;
     unsigned rows = 1;
@@ -184,6 +193,28 @@ char winner(const char *board) {
 
     // Ideally we would call a function like    adjacent parents board i j i (j + 1)
 
+#if 1
+    // - horizontal
+    for (i = 0; i < rows; ++i) {
+        for (j = 0; j + 1 < columns; ++j) {
+            adjacent(parents, board, columns, i, j, i, j + 1);
+        }
+    }
+
+    // \ diagonal 
+    for (i = 0; i + 1 < rows; ++i) {
+        for (j = 0; j < columns; ++j) {
+            adjacent(parents, board, columns, i, j, i + 1, j);
+        }
+    }
+
+    // / diagonal
+    for (i = 0; i + 1 < rows; ++i) {
+        for (j = 0; j + 1 < columns; ++j) {
+            adjacent(parents, board, columns, i, j + 1, i + 1, j);
+        }
+    }
+#else
     // - horizontal
     for (i = 0; i < rows; ++i) {
         for (j = 0; j + 1 < columns; ++j) {
@@ -210,10 +241,11 @@ char winner(const char *board) {
             }
         }
     }
+#endif
 
     printf("\n%d\n", count);
 
-#if 1
+#if 0
     if (root(parents, 0) == root(parents, 1))
         return 'O';
 
