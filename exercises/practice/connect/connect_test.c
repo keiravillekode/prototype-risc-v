@@ -7,19 +7,24 @@ unsigned count = 0;
 
 /* extern */ char winner(const char *board);
 
-unsigned root(uint16_t* parents, unsigned node);
+typedef struct {
+    uint16_t parent;
+    uint16_t rank;
+} element_t;
 
-unsigned root(uint16_t* parents, unsigned node) {
+unsigned root(element_t* parents, unsigned node);
+
+unsigned root(element_t* parents, unsigned node) {
 
 #if 0
-    while (parents[node] != node) {
-        node = parents[node];
+    while (parents[node].parent != node) {
+        node = parents[node].parent;
         count++;
     }
 #else
     unsigned grandparent;
-    while ((grandparent = parents[parents[node]]) != node) {
-        parents[node] = grandparent;
+    while ((grandparent = parents[parents[node].parent].parent) != node) {
+        parents[node].parent = grandparent;
         node = grandparent;
         count++;
     }
@@ -28,12 +33,25 @@ unsigned root(uint16_t* parents, unsigned node) {
     return node;
 }
 
-void merge(uint16_t* parents, unsigned first, unsigned second);
+void merge(element_t* parents, unsigned first, unsigned second);
 
-void merge(uint16_t* parents, unsigned first, unsigned second) {
+void merge(element_t* parents, unsigned first, unsigned second) {
     first = root(parents, first);
     second = root(parents, second);
-    parents[second] = first;
+
+#if 1
+    if (parents[first].rank > parents[second].rank) {
+        parents[second].parent = first;
+    } else {
+        if (parents[first].rank == parents[second].rank) {
+            parents[second].rank++;
+        }
+
+        parents[first].parent = second;
+    }
+#else
+    parents[second].parent = first;
+#endif
 }
 
 unsigned index(unsigned columns, unsigned row, unsigned column) {
@@ -60,7 +78,7 @@ char winner(const char *board) {
     unsigned offset;
     unsigned step;
 
-    uint16_t parents[1024];
+    element_t parents[1024];
     unsigned i;
     unsigned j;
 
@@ -75,8 +93,10 @@ char winner(const char *board) {
         offset += step;
     }
 
-    for (i = 0; i < rows * columns + 4; ++i)
-        parents[i] = i;
+    for (i = 0; i < rows * columns + 4; ++i) {
+        parents[i].parent = i;
+        parents[i].rank = 0;
+    }
 
 #if 0
     printf("\n%s\n", board);
@@ -308,6 +328,23 @@ void test_x_wins_using_a_spiral_path(void) {
     TEST_ASSERT_EQUAL_STRING("X", result);
 }
 
+void test_o_wins_using_a_long_spiral_path(void) {
+    const char board[] =
+        ". . . . . . . . . . .\n"
+        " . . . . . . . . . . .\n"
+        "  . . . . . . . . . . .\n"
+        "   . . . . . . . . . . .\n"
+        "    . . . . . . . . . . .\n"
+        "     . . . . . . . . . . .\n"
+        "      . . . . . . . . . . .\n"
+        "       . . . . . . . . . . .\n"
+        "        . . . . . . . . . . .\n"
+        "         . . . . . . . . . . .\n"
+        "          . . . . . . . . . . .\n";
+    const char result[2] = { winner(board), 0 };
+    TEST_ASSERT_EQUAL_STRING("O", result);
+}
+
 int main(void) {
     UNITY_BEGIN();
     RUN_TEST(test_an_empty_board_has_no_winner);
@@ -322,5 +359,6 @@ int main(void) {
     RUN_TEST(test_o_wins_crossing_from_top_to_bottom);
     RUN_TEST(test_x_wins_using_a_convoluted_path);
     RUN_TEST(test_x_wins_using_a_spiral_path);
+    RUN_TEST(test_o_wins_using_a_long_spiral_path);
     return UNITY_END();
 }
