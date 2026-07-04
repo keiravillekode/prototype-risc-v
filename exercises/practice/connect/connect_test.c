@@ -245,7 +245,7 @@ char winner(const char *board) {
 
     printf("\n%d\n", count);
 
-#if 0
+#if 1
     if (root(parents, 0) == root(parents, 1))
         return 'O';
 
