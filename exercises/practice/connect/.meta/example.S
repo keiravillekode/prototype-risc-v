@@ -323,7 +323,6 @@ adjacents:
 
         beqz    s2, .skip_horizontal
 
-                                        /* adjacent(parents, board, columns, i, j, i, j + 1); */
         move    a0, t4
         move    a1, s0
         move    a2, t5
@@ -339,7 +338,6 @@ adjacents:
         beqz    s1, .skip_forwards
         beqz    s2, .skip_forwards
 
-                                        /* adjacent(parents, board, columns, i, j + 1, i + 1, j); */
         move    a0, t4
         move    a1, s0
         move    a2, t5
@@ -355,7 +353,6 @@ adjacents:
 
         beqz    s1, .skip_backwards
 
-                                        /* adjacent(parents, board, columns, i, j, i + 1, j) */
         move    a0, t4
         move    a1, s0
         move    a2, t5
