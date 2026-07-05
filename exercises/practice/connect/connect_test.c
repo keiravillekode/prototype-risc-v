@@ -92,23 +92,19 @@ unsigned index(unsigned columns, unsigned row, unsigned column) {
 }
 #endif
 
+extern char occupant(const char *board, unsigned columns, unsigned row, unsigned column);
+
+#ifdef OCCUPANT
 char occupant(const char *board, unsigned columns, unsigned row, unsigned column) {
     unsigned offset;
     unsigned step;
 
     offset = 2 * column;
     step = 2 * columns;
-#if 1
     offset += row * step + row * (row + 1) / 2;
-#else
-    while (row > 0) {
-        row--;
-        step++;
-        offset += step;
-    }
-#endif
     return board[offset];
 }
+#endif
 
 void edge(element_t* parents, const char *board, unsigned columns, unsigned row, unsigned column, unsigned idx, char player);
 

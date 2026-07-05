@@ -124,11 +124,26 @@ merge:
 
 /* extern unsigned index(unsigned columns, unsigned row, unsigned column); */
 index:
-        mul a0, a0, a1
-        add a0, a0, a2
-        addi a0, a0, 4
+        mul     a0, a0, a1
+        add     a0, a0, a2
+        addi    a0, a0, 4
         ret
 
+
+.globl occupant
+
+/* externs char occupant(const char *board, unsigned columns, unsigned row, unsigned column); */
+occupant:
+        slli    a3, a3, 1
+        slli    a1, a1, 2
+        add     a1, a1, a2
+        addi    a1, a1, 1
+        mul     a1, a2, a1
+        srli    a1, a1, 1
+        add     a3, a3, a1
+        add     a3, a0, a3
+        lb      a0, 0(a3)
+        ret
 
 .globl winner0
 
