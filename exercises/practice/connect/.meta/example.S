@@ -175,6 +175,55 @@ edge:
         ret
 
 
+.globl adjacent
+
+/* extern void adjacent(element_t* parents, const char *board, unsigned columns, unsigned row1, unsigned column1, unsigned row2, unsigned column2); */
+adjacent:
+        move    a7, ra
+        move    t4, a0                  /* parents */
+        move    t3, a1                  /* board */
+        move    t5, a2                  /* columns */
+
+        move    t0, a3
+        move    t1, a4
+
+        move    a0, t3
+        move    a1, t5
+        move    a2, a3
+        move    a3, a4
+        call    occupant
+        move    t2, a0
+
+        move    a0, t3
+        move    a1, t5
+        move    a2, a5
+        move    a3, a6
+        call    occupant
+
+        bne     a0, t2, .adjacent_ret
+
+        move    a0, t5
+        move    a1, t0
+        move    a2, t1
+        call    index
+        move    t0, a0
+
+        move    a0, t5
+        move    a1, a5
+        move    a2, a6
+        call    index
+
+        move    a1, t0
+        move    a2, a0
+        move    a0, t4
+        move    ra, a7
+        j       merge
+
+.adjacent_ret:
+        move    ra, a7
+        ret
+
+
 .globl winner0
 
 /* extern char winner(const char *board); */
