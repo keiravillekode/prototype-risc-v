@@ -72,6 +72,9 @@ void merge(element_t* parents, unsigned first, unsigned second) {
     first = root(parents, first);
     second = root(parents, second);
 
+    if (first == second)
+        return;
+
 #if 1
     if (parents[first].rank > parents[second].rank) {
         parents[second].parent = first;
@@ -289,7 +292,7 @@ char winner(const char *board) {
 
     printf("\n%d\n", count); // 368
 
-#if 1
+#if 0
     if (root(parents, 0) == root(parents, 1))
         return 'O';
 
