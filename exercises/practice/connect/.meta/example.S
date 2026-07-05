@@ -94,7 +94,6 @@ merge:
         move    a1, a2
         call    root
         move    ra, t3
-        /* t4 parents, a3 first, a0 second */
         beq     a0, a3, .merge_ret
 
         slli    t0, a3, 2
