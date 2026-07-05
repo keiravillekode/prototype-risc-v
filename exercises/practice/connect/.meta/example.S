@@ -398,7 +398,7 @@ winner:
                                         /* t5 = number of columns */
                                         /* t6 = number of rows */
 
-        addi    sp, sp, -4096
+        addi    sp, sp, -2032
 
         move    a0, sp
         move    a1, t6
@@ -423,7 +423,7 @@ winner:
         move    t3, a0
 
         move    a0, sp
-        li      a1, 0
+        li      a1, 1
         call    root
         beq     t3, a0, .winner_o
 
@@ -440,7 +440,7 @@ winner:
         li      a0, '.'
 
 .winner_ret:
-        addi    sp, sp, 4096
+        addi    sp, sp, 2032
 
         lw      s0, 8(sp)
         lw      ra, 12(sp)
