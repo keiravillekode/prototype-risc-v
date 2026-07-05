@@ -120,6 +120,16 @@ merge:
         ret
 
 
+.globl index
+
+/* extern unsigned index(unsigned columns, unsigned row, unsigned column); */
+index:
+        mul a0, a0, a1
+        add a0, a0, a2
+        addi a0, a0, 4
+        ret
+
+
 .globl winner0
 
 /* extern char winner(const char *board); */

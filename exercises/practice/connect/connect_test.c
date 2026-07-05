@@ -84,9 +84,13 @@ void merge(element_t* parents, unsigned first, unsigned second) {
 }
 #endif
 
+extern unsigned index(unsigned columns, unsigned row, unsigned column);
+
+#ifdef INDEX
 unsigned index(unsigned columns, unsigned row, unsigned column) {
     return columns * row + column + 4;
 }
+#endif
 
 char occupant(const char *board, unsigned columns, unsigned row, unsigned column) {
     unsigned offset;
