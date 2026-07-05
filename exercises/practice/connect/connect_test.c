@@ -151,8 +151,9 @@ void edges(element_t* parents, const char *board, unsigned columns, unsigned row
 }
 #endif
 
-void adjacents(element_t* parents, const char *board, unsigned columns, unsigned rows);
+extern void adjacents(element_t* parents, const char *board, unsigned columns, unsigned rows);
 
+#ifdef ADJACENTS
 void adjacents(element_t* parents, const char *board, unsigned columns, unsigned rows) {
     unsigned i;
     unsigned j;
@@ -178,6 +179,7 @@ void adjacents(element_t* parents, const char *board, unsigned columns, unsigned
         }
     }
 }
+#endif
 
 char winner(const char *board) {
     unsigned columns = 1;

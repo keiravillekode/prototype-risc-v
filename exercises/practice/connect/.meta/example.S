@@ -237,7 +237,7 @@ edges:
         move    t4, a0                  /* parents */
         move    s0, a1                  /* board */
         move    t5, a2                  /* columns */
-        move    s1, a3                  /* rows */
+        move    t6, a3                  /* rows */
         move    s2, zero                /* j */
 
 .next_j:
@@ -255,7 +255,7 @@ edges:
         move    a0, t4
         move    a1, s0
         move    a2, t5
-        move    a3, s1
+        move    a3, t6
         addi    a3, a3, -1
         move    a4, s2
         li      a5, 1
@@ -290,7 +290,89 @@ edges:
         call    edge
 
         addi    s2, s2, 1
-        bne     s2, s1, .next_i
+        bne     s2, t6, .next_i
+
+        lw      s2, 0(sp)
+        lw      s1, 4(sp)
+        lw      s0, 8(sp)
+        lw      ra, 12(sp)
+        addi    sp, sp, 16
+        ret
+
+
+.globl adjacents
+
+/* extern void adjacents(element_t* parents, const char *board, unsigned columns, unsigned rows); */
+adjacents:
+        addi    sp, sp, -16
+        sw      ra, 12(sp)
+        sw      s0, 8(sp)
+        sw      s1, 4(sp)
+        sw      s2, 0(sp)
+
+        move    t4, a0                  /* parents */
+        move    s0, a1                  /* board */
+        move    t5, a2                  /* columns */
+        move    t6, a3                  /* rows */
+        move    s1, zero                /* i */
+
+.adjacents_next_i:
+        move    s2, zero                /* j */
+
+.adjacents_next_j:
+
+        beqz    s2, .skip_horizontal
+
+                                        /* adjacent(parents, board, columns, i, j, i, j + 1); */
+        move    a0, t4
+        move    a1, s0
+        move    a2, t5
+        move    a3, s1
+        move    a4, s2
+        move    a5, s1
+        move    a6, s2
+        addi    a6, a6, -1
+        call    adjacent
+
+.skip_horizontal:
+
+        beqz    s1, .skip_forwards
+        beqz    s2, .skip_forwards
+
+                                        /* adjacent(parents, board, columns, i, j + 1, i + 1, j); */
+        move    a0, t4
+        move    a1, s0
+        move    a2, t5
+        move    a3, s1
+        move    a4, s2
+        addi    a4, a4, -1
+        move    a5, s1
+        addi    a5, a5, -1
+        move    a6, s2
+        call    adjacent
+
+.skip_forwards:
+
+        beqz    s1, .skip_backwards
+
+                                        /* adjacent(parents, board, columns, i, j, i + 1, j) */
+        move    a0, t4
+        move    a1, s0
+        move    a2, t5
+        move    a3, s1
+        move    a4, s2
+        move    a5, s1
+        addi    a5, a5, -1
+        move    a6, s2
+        call    adjacent
+
+.skip_backwards:
+
+        addi    s2, s2, 1
+        bne     s2, t5, .adjacents_next_j
+
+        addi    s1, s1, 1
+        bne     s1, t6, .adjacents_next_i
 
         lw      s2, 0(sp)
         lw      s1, 4(sp)
