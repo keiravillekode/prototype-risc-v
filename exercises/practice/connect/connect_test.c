@@ -181,128 +181,28 @@ void adjacents(element_t* parents, const char *board, unsigned columns, unsigned
 }
 #endif
 
+#ifdef WINNER
 char winner(const char *board) {
     unsigned columns = 1;
     unsigned rows = 1;
 
     element_t parents[1024];
-//    unsigned i;
-  //  unsigned j;
 
-#if 1
     find_dimensions(board, &columns, &rows);
-#else
-    unsigned offset;
-    unsigned step;
-
-    while (board[2 * columns - 1] != '\n')
-        columns++;
-
-    offset = 2 * columns;
-    step = offset;
-    while (board[offset]) {
-        rows++;
-        step++;
-        offset += step;
-    }
-#endif
-
     init_parents(parents, rows, columns);
-
-#if 0
-    printf("\n%s\n", board);
-    printf("columns %d, rows %d\n", columns, rows);
-
-    for (i = 0; i < rows; ++i) {
-        for (j = 0; j < columns; ++j) {
-            printf("%c", occupant(board, columns, i, j));
-        }
-        printf("\n");
-    }
-#endif
-
-
-    /*
-        Ideally code like the following would become a function call
-
-        if (occupant(board, columns, 0, j) == 'O') {
-            merge(parents, 0, index(columns, 0, j));
-        }
-    */
-
-#if 1
     edges(parents, board, columns, rows);
-#else
-    for (j = 0; j < columns; ++j) {
-        // top edge
-        if (occupant(board, columns, 0, j) == 'O') {
-            merge(parents, 0, index(columns, 0, j));
-        }
 
-        // bottom edge
-        if (occupant(board, columns, rows - 1, j) == 'O') {
-            merge(parents, 1, index(columns, rows - 1, j));
-        }
-    }
-
-    for (i = 0; i < rows; ++i) {
-        // left edge
-        if (occupant(board, columns, i, 0) == 'X') {
-            merge(parents, 2, index(columns, i, 0));
-        }
-
-        // right edge
-        if (occupant(board, columns, i, columns - 1) == 'X') {
-            merge(parents, 3, index(columns, i, columns - 1));
-        }
-    }
-#endif
-
-    // Ideally we would call a function like    adjacent parents board i j i (j + 1)
-
-#if 1
     adjacents(parents, board, columns, rows);
-#else
-    // - horizontal
-    for (i = 0; i < rows; ++i) {
-        for (j = 0; j + 1 < columns; ++j) {
-            if (occupant(board, columns, i, j) == occupant(board, columns, i, j + 1)) {
-                merge(parents, index(columns, i, j), index(columns, i, j + 1));
-            }
-        }
-    }
 
-    // \ diagonal 
-    for (i = 0; i + 1 < rows; ++i) {
-        for (j = 0; j < columns; ++j) {
-            if (occupant(board, columns, i, j) == occupant(board, columns, i + 1, j)) {
-                merge(parents, index(columns, i, j), index(columns, i + 1, j));
-            }
-        }
-    }
-
-    // / diagonal
-    for (i = 0; i + 1 < rows; ++i) {
-        for (j = 0; j + 1 < columns; ++j) {
-            if (occupant(board, columns, i, j + 1) == occupant(board, columns, i + 1, j)) {
-                merge(parents, index(columns, i, j + 1), index(columns, i + 1, j));
-            }
-        }
-    }
-#endif
-
-    printf("\n%d\n", count); // 368
-
-#if 1
     if (root(parents, 0) == root(parents, 1))
         return 'O';
 
     if (root(parents, 2) == root(parents, 3))
         return 'X';
-#endif
 
     return '.';
 }
+#endif
 
 void setUp(void) {
 }

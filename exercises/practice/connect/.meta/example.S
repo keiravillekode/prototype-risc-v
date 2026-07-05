@@ -382,8 +382,75 @@ adjacents:
         ret
 
 
-.globl winner0
+.globl winner
 
 /* extern char winner(const char *board); */
-winner0:
+winner:
+        addi    sp, sp, -16
+        sw      ra, 12(sp)
+        sw      s0, 8(sp)
+
+        move    s0, a0                  /* board */
+        move    a1, sp
+        move    a2, sp
+        addi    a2, a2, 4
+        call    find_dimensions
+                                        /* t5 = number of columns */
+                                        /* t6 = number of rows */
+
+        addi    sp, sp, -4096
+
+        move    a0, sp
+        move    a1, t6
+        move    a2, t5
+        call    init_parents
+
+        move    a0, sp
+        move    a1, s0
+        move    a2, t5
+        move    a3, t6
+        call    edges
+
+        move    a0, sp
+        move    a1, s0
+        move    a2, t5
+        move    a3, t6
+        call    adjacents
+
+        move    a0, sp
+        li      a1, 0
+        call    root
+        move    t3, a0
+
+        move    a0, sp
+        li      a1, 0
+        call    root
+        beq     t3, a0, .winner_o
+
+        move    a0, sp
+        li      a1, 2
+        call    root
+        move    t3, a0
+
+        move    a0, sp
+        li      a1, 3
+        call    root
+        beq     t3, a0, .winner_x
+
+        li      a0, '.'
+
+.winner_ret:
+        addi    sp, sp, 4096
+
+        lw      s0, 8(sp)
+        lw      ra, 12(sp)
+        addi    sp, sp, 16
         ret
+
+.winner_o:
+       li       a0, 'O'
+       j        .winner_ret
+
+.winner_x:
+       li       a0, 'X'
+       j        .winner_ret
