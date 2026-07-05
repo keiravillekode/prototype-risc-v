@@ -126,8 +126,9 @@ void adjacent(element_t* parents, const char *board, unsigned columns, unsigned 
 }
 #endif
 
-void edges(element_t* parents, const char *board, unsigned columns, unsigned rows);
+extern void edges(element_t* parents, const char *board, unsigned columns, unsigned rows);
 
+#ifdef EDGES
 void edges(element_t* parents, const char *board, unsigned columns, unsigned rows) {
     unsigned i;
     unsigned j;
@@ -148,6 +149,7 @@ void edges(element_t* parents, const char *board, unsigned columns, unsigned row
         edge(parents, board, columns, i, columns - 1, 3, 'X');
     }
 }
+#endif
 
 void adjacents(element_t* parents, const char *board, unsigned columns, unsigned rows);
 

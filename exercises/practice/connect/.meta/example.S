@@ -224,6 +224,82 @@ adjacent:
         ret
 
 
+.globl edges
+
+/* extern void edges(element_t* parents, const char *board, unsigned columns, unsigned rows); */
+edges:
+        addi    sp, sp, -16
+        sw      ra, 12(sp)
+        sw      s0, 8(sp)
+        sw      s1, 4(sp)
+        sw      s2, 0(sp)
+
+        move    t4, a0                  /* parents */
+        move    s0, a1                  /* board */
+        move    t5, a2                  /* columns */
+        move    s1, a3                  /* rows */
+        move    s2, zero                /* j */
+
+.next_j:
+                                        /* top edge */
+        move    a0, t4
+        move    a1, s0
+        move    a2, t5
+        move    a3, zero
+        move    a4, s2
+        li      a5, 0
+        li      a6, 'O'
+        call    edge
+
+                                        /* bottom edge */
+        move    a0, t4
+        move    a1, s0
+        move    a2, t5
+        move    a3, s1
+        addi    a3, a3, -1
+        move    a4, s2
+        li      a5, 1
+        li      a6, 'O'
+        call    edge
+
+        addi    s2, s2, 1
+        bne     s2, t5, .next_j
+
+        move    s2, zero                /* i */
+
+.next_i:
+                                        /* left edge */
+        move    a0, t4
+        move    a1, s0
+        move    a2, t5
+        move    a3, s2
+        move    a4, zero
+        li      a5, 2
+        li      a6, 'X'
+        call    edge
+
+                                        /* right edge */
+        move    a0, t4
+        move    a1, s0
+        move    a2, t5
+        move    a3, s2
+        move    a4, t5
+        addi    a4, a4, -1
+        li      a5, 3
+        li      a6, 'X'
+        call    edge
+
+        addi    s2, s2, 1
+        bne     s2, s1, .next_i
+
+        lw      s2, 0(sp)
+        lw      s1, 4(sp)
+        lw      s0, 8(sp)
+        lw      ra, 12(sp)
+        addi    sp, sp, 16
+        ret
+
+
 .globl winner0
 
 /* extern char winner(const char *board); */
