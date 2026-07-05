@@ -134,16 +134,33 @@ index:
 
 /* externs char occupant(const char *board, unsigned columns, unsigned row, unsigned column); */
 occupant:
-        slli    a3, a3, 1
         slli    a1, a1, 2
         add     a1, a1, a2
         addi    a1, a1, 1
         mul     a1, a2, a1
         srli    a1, a1, 1
-        add     a3, a3, a1
-        add     a3, a0, a3
-        lb      a0, 0(a3)
+        add     a1, a1, a3
+        add     a1, a1, a3
+        add     a1, a0, a1
+        lb      a0, 0(a1)
         ret
+
+
+.globl edge1
+
+/* extern void edge(element_t* parents, const char *board, unsigned columns, unsigned row, unsigned column, unsigned idx, char player); */
+edge1:
+
+
+/*
+#ifdef EDGE
+void edge(element_t* parents, const char *board, unsigned columns, unsigned row, unsigned column, unsigned idx, char player) {
+    if (occupant(board, columns, row, column) == player) {
+        merge(parents, idx, index(columns, row, column));
+    }
+}
+#endif
+*/
 
 .globl winner0
 

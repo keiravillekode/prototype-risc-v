@@ -106,13 +106,15 @@ char occupant(const char *board, unsigned columns, unsigned row, unsigned column
 }
 #endif
 
-void edge(element_t* parents, const char *board, unsigned columns, unsigned row, unsigned column, unsigned idx, char player);
+extern void edge(element_t* parents, const char *board, unsigned columns, unsigned row, unsigned column, unsigned idx, char player);
 
+#ifndef EDGE
 void edge(element_t* parents, const char *board, unsigned columns, unsigned row, unsigned column, unsigned idx, char player) {
     if (occupant(board, columns, row, column) == player) {
         merge(parents, idx, index(columns, row, column));
     }
 }
+#endif
 
 void adjacent(element_t* parents, const char *board, unsigned columns, unsigned row1, unsigned column1, unsigned row2, unsigned column2);
 
