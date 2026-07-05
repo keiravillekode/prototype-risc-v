@@ -49,26 +49,18 @@ void init_parents(element_t* parents, unsigned rows, unsigned columns) {
 }
 #endif
 
-unsigned root(element_t* parents, unsigned node);
+extern unsigned root(element_t* parents, unsigned node);
 
+#ifdef ROOT
 unsigned root(element_t* parents, unsigned node) {
-
-#if 1
     unsigned grandparent;
     while ((grandparent = parents[parents[node].parent].parent) != node) {
         parents[node].parent = grandparent;
         node = grandparent;
-        count++;
     }
-#else
-    while (parents[node].parent != node) {
-        node = parents[node].parent;
-        count++;
-    }
-#endif
-
     return node;
 }
+#endif
 
 void merge(element_t* parents, unsigned first, unsigned second);
 

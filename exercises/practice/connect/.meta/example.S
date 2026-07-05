@@ -52,6 +52,34 @@ init_parents:
 
         ret
 
+
+.globl root
+
+/* extern unsigned root(element_t* parents, unsigned node); */
+root:
+        j       .fixed_point_check
+
+.reparent:
+        slli    t0, a1, 2
+        add     t0, a0, t0
+        sh      t1, 0(t0)
+        move    a1, t1
+
+.fixed_point_check:
+        slli    t0, a1, 2
+        add     t0, a0, t0
+        lh      t1, 0(t0)
+
+        slli    t0, t1, 2
+        add     t0, a0, t0
+        lh      t1, 0(t0)
+
+        bne     a1, t1, .reparent
+
+        move    a0, a1
+        ret
+
+
 .globl winner0
 
 /* extern char winner(const char *board); */
