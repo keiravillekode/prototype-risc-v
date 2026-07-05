@@ -7,8 +7,9 @@ unsigned count = 0;
 
 /* extern */ char winner(const char *board);
 
-void find_dimensions(const char *board, unsigned *columns, unsigned *rows);
+extern void find_dimensions(const char *board, unsigned *columns, unsigned *rows);
 
+#ifdef FIND_DIMENSIONS
 void find_dimensions(const char *board, unsigned *columns, unsigned *rows) {
     *columns = 1;
     *rows = 1;
@@ -27,6 +28,7 @@ void find_dimensions(const char *board, unsigned *columns, unsigned *rows) {
         offset += step;
     }
 }
+#endif
 
 typedef struct {
     uint16_t parent;
@@ -292,7 +294,7 @@ char winner(const char *board) {
 
     printf("\n%d\n", count); // 368
 
-#if 0
+#if 1
     if (root(parents, 0) == root(parents, 1))
         return 'O';
 
