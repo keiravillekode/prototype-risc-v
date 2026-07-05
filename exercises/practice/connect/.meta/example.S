@@ -1,5 +1,6 @@
 .text
 
+
 .globl find_dimensions
 
 /* extern void find_dimensions(const char *board, unsigned *columns, unsigned *rows); */
@@ -35,6 +36,9 @@ find_dimensions:
         sw      t6, 0(a2)               /* store rows */
         ret
 
+
+/* Unimplemented idea: we could store indices shifted left by 2, i.e. store byte offsets */
+
 .globl init_parents
 
 /* extern void init_parents(element_t* parents, unsigned rows, unsigned columns); */
@@ -69,14 +73,51 @@ root:
         slli    t0, a1, 2
         add     t0, a0, t0
         lh      t1, 0(t0)
-
         slli    t0, t1, 2
         add     t0, a0, t0
         lh      t1, 0(t0)
-
         bne     a1, t1, .reparent
 
         move    a0, a1
+        ret
+
+
+.globl merge
+
+/* extern void merge(element_t* parents, unsigned first, unsigned second); */
+merge:
+        move    t3, ra
+        move    t4, a0
+        call    root
+        move    a3, a0
+        move    a0, t4
+        move    a1, a2
+        call    root
+        move    ra, t3
+        /* t4 parents, a3 first, a0 second */
+        beq     a0, a3, .merge_ret
+
+        slli    t0, a3, 2
+        add     t0, t4, t0
+        slli    t1, a0, 2
+        add     t1, t4, t1
+        lh      t2, 2(t0)
+        lh      t3, 2(t1)
+        bgt     t2, t3, .merge_into_first
+
+        blt     t2, t3, .merge_into_second
+
+        addi    t3, t3, 1
+        sh      t3, 2(t1)
+
+.merge_into_second:
+        sh      a0, 0(t0)
+
+.merge_ret:
+        ret
+
+.merge_into_first:
+        sh      a3, 0(t1)
         ret
 
 

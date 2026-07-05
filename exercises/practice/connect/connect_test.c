@@ -62,8 +62,9 @@ unsigned root(element_t* parents, unsigned node) {
 }
 #endif
 
-void merge(element_t* parents, unsigned first, unsigned second);
+extern void merge(element_t* parents, unsigned first, unsigned second);
 
+#ifdef MERGE
 void merge(element_t* parents, unsigned first, unsigned second) {
     first = root(parents, first);
     second = root(parents, second);
@@ -71,7 +72,6 @@ void merge(element_t* parents, unsigned first, unsigned second) {
     if (first == second)
         return;
 
-#if 1
     if (parents[first].rank > parents[second].rank) {
         parents[second].parent = first;
     } else {
@@ -81,10 +81,8 @@ void merge(element_t* parents, unsigned first, unsigned second) {
 
         parents[first].parent = second;
     }
-#else
-    parents[second].parent = first;
-#endif
 }
+#endif
 
 unsigned index(unsigned columns, unsigned row, unsigned column) {
     return columns * row + column + 4;
