@@ -146,21 +146,34 @@ occupant:
         ret
 
 
-.globl edge1
+.globl edge
 
 /* extern void edge(element_t* parents, const char *board, unsigned columns, unsigned row, unsigned column, unsigned idx, char player); */
-edge1:
+edge:
+        move    a7, ra
+        move    t4, a0                  /* parents */
+        move    t5, a2                  /* columns */
 
+        move    a0, a1
+        move    a1, t5
+        move    a2, a3
+        move    a3, a4
+        call    occupant
+        bne     a0, a6, .edge_ret
 
-/*
-#ifdef EDGE
-void edge(element_t* parents, const char *board, unsigned columns, unsigned row, unsigned column, unsigned idx, char player) {
-    if (occupant(board, columns, row, column) == player) {
-        merge(parents, idx, index(columns, row, column));
-    }
-}
-#endif
-*/
+        move    a0, t5
+        move    a1, a2
+        move    a2, a3
+        call    index
+        move    a2, a0
+        move    a0, t4
+        move    a1, a5
+        call    merge
+
+.edge_ret:
+        move    ra, a7
+        ret
+
 
 .globl winner0
 

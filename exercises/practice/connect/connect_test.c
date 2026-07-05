@@ -108,7 +108,7 @@ char occupant(const char *board, unsigned columns, unsigned row, unsigned column
 
 extern void edge(element_t* parents, const char *board, unsigned columns, unsigned row, unsigned column, unsigned idx, char player);
 
-#ifndef EDGE
+#ifdef EDGE
 void edge(element_t* parents, const char *board, unsigned columns, unsigned row, unsigned column, unsigned idx, char player) {
     if (occupant(board, columns, row, column) == player) {
         merge(parents, idx, index(columns, row, column));
