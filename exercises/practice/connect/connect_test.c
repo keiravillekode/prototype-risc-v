@@ -35,8 +35,9 @@ typedef struct {
     uint16_t rank;
 } element_t;
 
-void init_parents(element_t* parents, unsigned rows, unsigned columns);
+extern void init_parents(element_t* parents, unsigned rows, unsigned columns);
 
+#ifdef INIT_PARENTS
 void init_parents(element_t* parents, unsigned rows, unsigned columns) {
     unsigned i;
 
@@ -46,6 +47,7 @@ void init_parents(element_t* parents, unsigned rows, unsigned columns) {
     }
 
 }
+#endif
 
 unsigned root(element_t* parents, unsigned node);
 

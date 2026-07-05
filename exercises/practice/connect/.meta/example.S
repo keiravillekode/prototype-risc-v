@@ -35,6 +35,22 @@ find_dimensions:
         sw      t6, 0(a2)               /* store rows */
         ret
 
+.globl init_parents
+
+/* extern void init_parents(element_t* parents, unsigned rows, unsigned columns); */
+init_parents:
+        mul     t0, a1, a2
+        addi    t0, t0, 4
+        move    t1, zero
+
+.init_parent:
+        slli    t2, t1, 2
+        add     t2, a0, t2
+        sw      t1, 0(t2)
+        addi    t1, t1, 1
+        bne     t1, t0, .init_parent
+
+        ret
 
 .globl winner0
 
