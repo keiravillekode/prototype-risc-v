@@ -4,6 +4,32 @@ FUNC_PROTO = """\
 extern char winner(const char *board);
 """
 
+
+def extra_cases():
+    return [
+        {
+          "description": "O wins using a long windy path",
+          "property": "winner",
+          "input": {
+            "board": [
+              "O . . O O X X X X X .",
+              " O O . X X O O O . X X",
+              "  . O X O O . X O O . X",
+              "   . O X O O O X X O . X",
+              "    O X X X . O X O . X .",
+              "     O O X X O . X O O X X",
+              "      X O X X O O X X O . X",
+              "       . O X X X O X O X X .",
+              "        O X O O X O X O O X .",
+              "         O O X O O . . . O X X",
+              "          X X . . . O O O X . ."
+            ]
+          },
+          "expected": "O"
+        }
+    ]
+
+
 def gen_func_body(prop, inp, expected):
     board = inp["board"]
     if expected == '':

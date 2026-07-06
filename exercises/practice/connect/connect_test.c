@@ -1,28 +1,6 @@
 #include "vendor/unity.h"
 
-/* extern */ char winner(const char *board);
-
-char winner(const char *board) {
-    unsigned columns = 1;
-    unsigned rows = 1;
-    unsigned offset;
-    unsigned step;
-
-    while (board[2 * columns - 1] != '\n')
-        columns++;
-
-    offset = 2 * columns;
-    step = offset;
-    while (board[offset]) {
-        rows++;
-        step++;
-        offset += step;
-    }
-
-    printf("\n%s\n", board);
-    printf("columns %d, rows %d\n", columns, rows);
-    return '.';
-}
+extern char winner(const char *board);
 
 void setUp(void) {
 }
@@ -166,6 +144,24 @@ void test_x_wins_using_a_spiral_path(void) {
     TEST_ASSERT_EQUAL_STRING("X", result);
 }
 
+void test_o_wins_using_a_long_windy_path(void) {
+    TEST_IGNORE();
+    const char board[] =
+        "O . . O O X X X X X .\n"
+        " O O . X X O O O . X X\n"
+        "  . O X O O . X O O . X\n"
+        "   . O X O O O X X O . X\n"
+        "    O X X X . O X O . X .\n"
+        "     O O X X O . X O O X X\n"
+        "      X O X X O O X X O . X\n"
+        "       . O X X X O X O X X .\n"
+        "        O X O O X O X O O X .\n"
+        "         O O X O O . . . O X X\n"
+        "          X X . . . O O O X . .\n";
+    const char result[2] = { winner(board), 0 };
+    TEST_ASSERT_EQUAL_STRING("O", result);
+}
+
 int main(void) {
     UNITY_BEGIN();
     RUN_TEST(test_an_empty_board_has_no_winner);
@@ -180,5 +176,6 @@ int main(void) {
     RUN_TEST(test_o_wins_crossing_from_top_to_bottom);
     RUN_TEST(test_x_wins_using_a_convoluted_path);
     RUN_TEST(test_x_wins_using_a_spiral_path);
+    RUN_TEST(test_o_wins_using_a_long_windy_path);
     return UNITY_END();
 }
