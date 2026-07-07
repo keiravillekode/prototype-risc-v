@@ -248,6 +248,14 @@
         "difficulty": 4
       },
       {
+        "slug": "kindergarten-garden",
+        "name": "Kindergarten Garden",
+        "uuid": "34cb750f-46f2-492e-bf1c-281fc12514ac",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 4
+      },
+      {
         "slug": "matrix",
         "name": "Matrix",
         "uuid": "56b49b10-80e2-4360-a870-c7c82a94e11b",
