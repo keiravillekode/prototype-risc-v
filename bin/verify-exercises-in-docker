@@ -99,7 +99,7 @@ done
 shift "$((OPTIND - 1))"
 
 if [[ -z "${image}" ]]; then
-    image="exercism/prototype-risc-v-test-runner:latest"
+    image="exercism/risc-v-test-runner:latest"
     /bin/true || docker pull "${image}" ||
         die "docker pull ${image} failed. Check the test runner docs at https://exercism.org/docs/building/tooling/test-runners for more information."
 fi
