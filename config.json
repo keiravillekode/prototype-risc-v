@@ -512,6 +512,14 @@
         "difficulty": 8
       },
       {
+        "slug": "dominoes",
+        "name": "Dominoes",
+        "uuid": "d248034d-4d85-4b5c-ba3c-b3d528ee25a2",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 8
+      },
+      {
         "slug": "palindrome-products",
         "name": "Palindrome Products",
         "uuid": "0e0c7e31-56d0-4da8-9e63-0f190c606c86",
