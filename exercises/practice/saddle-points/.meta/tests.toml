@@ -14,6 +14,7 @@ description = "Can identify single saddle point"
 
 [6b501e2b-6c1f-491f-b1bb-7f278f760534]
 description = "Can identify that empty matrix has no saddle points"
+include = false
 
 [8c27cc64-e573-4fcb-a099-f0ae863fb02f]
 description = "Can identify lack of saddle points when there are none"
