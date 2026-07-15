@@ -21,8 +21,8 @@
 /* extern size_t sieve(uint32_t *primes, uint32_t limit); */
 sieve:
         move    t0, a0
-        addi    a2, a1, 8
-        andi    a2, a2, -8              /* limit, rounded up to next multiple of 8 */
+        addi    a2, a1, 16
+        andi    a2, a2, -16             /* limit, rounded up to next multiple of 16 */
         li      a3, 1
         sub     sp, sp, a2
         add     a4, sp, a1              /* pointer to sp + limit */

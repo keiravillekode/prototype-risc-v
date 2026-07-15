@@ -440,6 +440,14 @@
         "difficulty": 6
       },
       {
+        "slug": "change",
+        "name": "Change",
+        "uuid": "54150d65-6940-4d5e-850d-ff762fcd01f1",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 6
+      },
+      {
         "slug": "crypto-square",
         "name": "Crypto Square",
         "uuid": "af35d898-215e-4dc6-a4f0-d4511a39be0e",

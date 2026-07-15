@@ -12,13 +12,14 @@
 | `a5`     | address | start of output                                            |
 | `a6`     | address | original stack pointer, end of largest-in-rows array       |
 | `a7`     | address | largest-in-rows array                                      |
-| `sp`     | address | stack pointer,  smallest-in-columns array                  |
+| `sp`     | address | stack pointer                                              |
 | `t0`     | integer | current matrix entry                                       |
 | `t1`     | address | end of current matrix row                                  |
 | `t2`     | address | largest-in-rows array                                      |
 | `t3`     | integer | largest in current row                                     |
-| `t4`     | address | smallest-in-columns array                                  |
+| `t4`     | address | pointer into smallest-in-columns array                     |
 | `t5`     | integer | smallest in current column                                 |
+| `t6`     | address | start of smallest-in-columns array                         |
 */
 
 /* extern size_t saddle_points(point_t *output, const int32_t *matrix, size_t row_count, size_t column_count); */
@@ -27,10 +28,13 @@ saddle_points:
         mul     a4, a2, a3              /* matrix bytes */
         slli    a3, a3, 2               /* col_count*4 = bytes for smallest-in-columns array */
         move    a6, sp
-        sub     sp, sp, a2
-        move    a7, sp                  /* address for largest-in-rows array */
-        move    t2, sp                  /* address for largest-in-rows array */
-        sub     sp, sp, a3              /* address for smallest-in-columns array */
+        add     t0, a2, a3
+        addi    t0, t0, 15
+        andi    t0, t0, -16             /* bytes for both arrays, rounded up to a multiple of 16 */
+        sub     sp, sp, t0              /* allocate both arrays, keeping sp 16-byte aligned */
+        sub     a7, a6, a2              /* address for largest-in-rows array */
+        move    t2, a7                  /* address for largest-in-rows array */
+        sub     t6, a7, a3              /* address for smallest-in-columns array */
 
 .largest_next_row:
         add     t1, a1, a3              /* address in matrix for end of current row */
@@ -51,7 +55,7 @@ saddle_points:
         bne     t2, a6, .largest_next_row
 
         sub     t2, a6, a2              /* largest-in-rows array */
-        move    t4, sp                  /* smallest-in-columns array */
+        move    t4, t6                  /* smallest-in-columns array */
         sub     a1, a1, a4              /* reset matrix input iterator */
 
 .smallest_next_column:
@@ -81,7 +85,7 @@ saddle_points:
         add     t1, a1, a3              /* address in matrix for end of current row */
         lw      t3, 0(t2)               /* largest in current row */
         addi    t2, t2, 4
-        move    t4, sp                  /* pointer into smallest-in-columns array */
+        move    t4, t6                  /* pointer into smallest-in-columns array */
 
 .scan_within_row:
         lw      t0, 0(a1)
@@ -95,7 +99,7 @@ saddle_points:
         sub     t0, t2, a7
         srli    t0, t0, 2               /* 1-based row index */
         sw      t0, 0(a0)
-        sub     t0, t4, sp
+        sub     t0, t4, t6
         srli    t0, t0, 2               /* 1-based column index */
         sw      t0, 4(a0)
         addi    a0, a0, 8
