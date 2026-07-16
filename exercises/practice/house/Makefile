@@ -5,7 +5,7 @@ LDFLAGS =
 
 ALL_LDFLAGS = -static
 
-ALL_CFLAGS = -std=c99 $(CFLAGS)
+ALL_CFLAGS = -std=c23 $(CFLAGS)
 ALL_LDFLAGS += $(LDFLAGS)
 
 C_OBJS = $(patsubst %.c,%.o,$(wildcard *.c))
